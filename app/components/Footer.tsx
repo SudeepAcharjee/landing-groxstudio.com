@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useState, useEffect, useSyncExternalStore } from "react";
+import { useSyncExternalStore } from "react";
 import { Poppins, Playfair_Display } from "next/font/google";
 import Link from "next/link";
 

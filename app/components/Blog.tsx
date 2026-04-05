@@ -3,7 +3,6 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ChevronsRight, ChevronRight } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 const BLOGS = [
     {

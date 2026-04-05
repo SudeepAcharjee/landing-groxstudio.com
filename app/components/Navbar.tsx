@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X, AlignRight } from "lucide-react";
+import { X, AlignRight } from "lucide-react";
 
 const NAV_LINKS = [
     { name: "Home", href: "/" },

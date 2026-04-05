@@ -59,23 +59,28 @@ export default function StickyScroll() {
         {/* RIGHT IMAGE */}
         <div className="w-1/2 relative flex items-center justify-center">
           {data.map((item, i) => (
-            <motion.img
-              key={i}
-              src={item.image}
-              alt=""
-              className="absolute w-[80%] h-[80%] object-cover rounded-2xl"
-              style={{
-                opacity: useTransform(
-                  imageIndex,
-                  [i - 0.5, i, i + 0.5],
-                  [0, 1, 0]
-                ),
-              }}
-            />
+            <StickyScrollImage key={i} item={item} i={i} imageIndex={imageIndex} />
           ))}
         </div>
 
       </div>
     </div>
+  );
+}
+
+function StickyScrollImage({ item, i, imageIndex }: { item: any, i: number, imageIndex: any }) {
+  const opacity = useTransform(
+    imageIndex,
+    [i - 0.5, i, i + 0.5],
+    [0, 1, 0]
+  );
+
+  return (
+    <motion.img
+      src={item.image}
+      alt=""
+      className="absolute w-[80%] h-[80%] object-cover rounded-2xl"
+      style={{ opacity }}
+    />
   );
 }
