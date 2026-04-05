@@ -22,7 +22,7 @@ export default function Page() {
 
 
       <Services />
-      <Showcase />
+      {/* <Showcase /> */}
       <HowItWork />
       <Blog />
       <Booking />
