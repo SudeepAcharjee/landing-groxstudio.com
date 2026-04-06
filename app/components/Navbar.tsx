@@ -15,6 +15,7 @@ import Image from "next/image";
 import { Josefin_Sans, Noto_Sans } from "next/font/google";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ArrowUpRight } from "lucide-react";
 
 const josefin = Josefin_Sans({
   subsets: ["latin"],
@@ -35,7 +36,7 @@ const CustomLogo = () => (
       alt="Grovio Logo"
       width={100}
       height={32}
-      className="object-contain brightness-0 invert" 
+      className="object-contain brightness-0 invert"
       priority
     />
   </Link>
@@ -44,31 +45,20 @@ const CustomLogo = () => (
 export default function Navbar() {
   const navItems: NavItem[] = [
     {
-      name: "Our Work",
-      link: "/our-works",
-    },
-    {
-      name: "Services",
-      link: "#",
-      sections: [
-        {
-          items: [
-            { name: "Graphic Design", link: "/our-services/graphic-design" },
-            { name: "Video Editing", link: "/our-services/video-editing" },
-            { name: "UGC Ads", link: "/our-services/ugc-ads" },
-            { name: "Social Media Management", link: "/our-services/social-media-management" },
-            { name: "Performance Marketing", link: "/our-services/performance-marketing" },
-          ],
-        },
-      ],
-    },
-    {
       name: "About Us",
       link: "/about",
     },
     {
-      name: "Case Studies",
-      link: "/case-studies",
+      name: "Services",
+      link: "/our-services",
+    },
+    {
+      name: "Our Works",
+      link: "/our-works",
+    },
+    {
+      name: "Testimonials",
+      link: "#testimonials",
     },
   ];
 
@@ -99,26 +89,25 @@ export default function Navbar() {
 
           <div className="flex items-center gap-4">
             {/* Contact Us Button - Styled as requested */}
-            {/* Contact Us Button - Styled as requested */}
+            {/* Book a Call Button - Styled exactly as requested */}
             <Link
-              href="/contact-us"
-              className={`relative px-6 py-2 bg-[#fffaee] text-black font-semibold overflow-hidden group transition-all duration-300 hover:scale-105 hover:shadow-lg rounded-full`}
+              href="#booking"
+              className="group relative flex items-center justify-between bg-white/[0.03] border border-white/10 hover:border-[#0066FF]/30 p-1.5 rounded-full transition-all duration-500 overflow-hidden min-w-[170px]"
             >
-              <span className="absolute inset-0 w-0 bg-[#1b38f4] transition-all duration-[250ms] ease-out group-hover:w-full"></span>
-              <span className={`relative z-10 group-hover:text-white uppercase tracking-wide text-xs font-semibold transition-colors duration-200`}>
-                Contact Us
-              </span>
+              {/* Expanding Background from the icon circle */}
+              <div className="absolute left-1.5 top-1.5 bottom-1.5 w-8 bg-[#0066FF] rounded-full group-hover:w-[calc(100%-12px)] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] z-0 shadow-[0_0_20px_rgba(0,102,255,0.3)]" />
+
+              <div className="relative z-10 flex items-center w-full">
+                <div className="flex items-center justify-center w-8 h-8 rounded-full overflow-hidden transition-all duration-500">
+                  <ArrowUpRight className="w-4 h-4 text-white group-hover:scale-110 transition-transform duration-500" />
+                </div>
+                <div className="flex-1 text-center pr-3 pl-1">
+                  <span className={`text-white text-[17px] font-medium tracking-tight select-none ${notoSans.className}`}>
+                    Book a Call
+                  </span>
+                </div>
+              </div>
             </Link>
-            {/* <Link
-              href="/book-call"
-              className={`relative px-6 py-2 border border-white text-white font-semibold overflow-hidden group transition-all duration-300 ${isScrolled ? "rounded-full" : "rounded"
-                }`}
-            >
-              <span className="absolute inset-0 w-0 bg-gradient-to-r from-[#a881fb] to-[#d0bfff] transition-all duration-[250ms] ease-out group-hover:w-full"></span>
-              <span className={`relative z-10 group-hover:text-black uppercase tracking-wide text-xs font-semibold transition-colors duration-200`}>
-                Book a Call
-              </span>
-            </Link> */}
           </div>
         </NavBody>
 
@@ -174,12 +163,12 @@ export default function Navbar() {
                             className="overflow-hidden w-full flex flex-col items-center bg-white/5 rounded-2xl mt-2 py-2 gap-2"
                           >
                             {item.sections?.map((section, sIdx) => {
-                               const sectionLabel = section.title || (sIdx === 0 ? "Marketing" : "Software Development");
-                               const isSectionExpanded = expandedSection === sectionLabel;
-                               
-                               return (
+                              const sectionLabel = section.title || (sIdx === 0 ? "Marketing" : "Software Development");
+                              const isSectionExpanded = expandedSection === sectionLabel;
+
+                              return (
                                 <div key={`mob-sec-${sIdx}`} className="w-full flex flex-col items-center">
-                                  <button 
+                                  <button
                                     onClick={() => setExpandedSection(isSectionExpanded ? null : sectionLabel)}
                                     className="w-full py-3 flex items-center justify-center gap-2 text-zinc-500 font-bold uppercase tracking-widest text-[11px]"
                                   >
@@ -201,7 +190,7 @@ export default function Navbar() {
                                   </button>
                                   <AnimatePresence>
                                     {isSectionExpanded && (
-                                      <motion.div 
+                                      <motion.div
                                         initial={{ height: 0, opacity: 0 }}
                                         animate={{ height: "auto", opacity: 1 }}
                                         exit={{ height: 0, opacity: 0 }}
@@ -225,7 +214,7 @@ export default function Navbar() {
                                     )}
                                   </AnimatePresence>
                                 </div>
-                               );
+                              );
                             })}
                           </motion.div>
                         )}
@@ -243,27 +232,25 @@ export default function Navbar() {
                 </div>
               );
             })}
-            <div className="flex w-full flex-col gap-4 mt-4">
+            <div className="flex w-full flex-col gap-4 mt-8 px-4 items-center">
               <Link
-                href="/contact-us"
+                href="#booking"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="relative px-6 py-3 border border-white text-white font-semibold rounded-full overflow-hidden group transition-all duration-300 text-center"
+                className="group relative flex items-center justify-between bg-white/[0.03] border border-white/10 hover:border-[#0066FF]/30 p-1.5 rounded-full transition-all duration-500 overflow-hidden w-[220px]"
               >
-                <span className="absolute inset-0 w-0 bg-gradient-to-r from-[#a881fb] to-[#d0bfff] transition-all duration-[250ms] ease-out group-hover:w-full"></span>
-                <span className={`relative z-10 group-hover:text-black uppercase tracking-wide text-sm font-semibold transition-colors duration-200`}>
-                  Contact Us
-                </span>
+                <div className="absolute left-1.5 top-1.5 bottom-1.5 w-10 bg-[#0066FF] rounded-full group-hover:w-[calc(100%-12px)] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] z-0 shadow-[0_0_20px_rgba(0,102,255,0.3)]" />
+
+                <div className="relative z-10 flex items-center w-full">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-full overflow-hidden transition-all duration-500">
+                    <ArrowUpRight className="w-5 h-5 text-white group-hover:scale-110 transition-transform duration-500" />
+                  </div>
+                  <div className="flex-1 text-center pr-3 pl-1">
+                    <span className={`text-white text-[17px] font-medium tracking-tight select-none ${notoSans.className}`}>
+                      Book a Call
+                    </span>
+                  </div>
+                </div>
               </Link>
-              {/* <Link
-                href="/book-call"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="relative px-6 py-3 border border-white text-white font-semibold rounded overflow-hidden group transition-all duration-300 text-center"
-              >
-                <span className="absolute inset-0 w-0 bg-gradient-to-r from-[#a881fb] to-[#d0bfff] transition-all duration-[250ms] ease-out group-hover:w-full"></span>
-                <span className={`relative z-10 group-hover:text-black uppercase tracking-wide text-sm font-semibold transition-colors duration-200`}>
-                  Book a Call
-                </span>
-              </Link> */}
             </div>
           </MobileNavMenu>
         </MobileNav>

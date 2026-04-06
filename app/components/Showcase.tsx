@@ -47,8 +47,8 @@ const PROJECTS = [
 
 export default function Showcase() {
   return (
-    <section className="bg-black pt-24 pb-12 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto mb-10">
+    <section className="bg-black py-10 px-6 md:px-12 md:pt-20 pt-10">
+      <div className="max-w-7xl mx-auto">
         <h2 className="text-white text-4xl md:text-6xl font-light tracking-tight leading-[0.9]">
           Our Creative
         </h2>

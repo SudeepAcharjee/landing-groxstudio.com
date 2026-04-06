@@ -17,12 +17,12 @@ const SERVICES = [
     {
         id: "03",
         title: "Digital Marketing",
-        tags: ["Email Marketing", "Pay-Per-Click", "SEO", "Social Media Marketing"]
+        tags: ["Email Marketing", "Pay-Per-Click", "SEO", "SMM"]
     },
     {
         id: "04",
         title: "UI/UX Design",
-        tags: ["User Interface (UI)", "Wireframing", "Analysis", "Mobile App UI Design"]
+        tags: ["User Interface", "Wireframing", "Analysis", "Mobile App UI"]
     }
 ];
 
@@ -41,7 +41,7 @@ export default function Services() {
     };
 
     return (
-        <section id="services" className="relative bg-black py-20 px-6 md:px-12">
+        <section id="services" className="relative bg-black py-10 px-6 md:px-12 md:pt-20 pt-10">
             <div className="max-w-7xl mx-auto">
                 <div className="flex flex-col items-center md:items-end md:flex-row justify-between gap-6 mb-10 md:mb-16 text-center md:text-left">
                     <motion.div 

@@ -31,9 +31,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${poppins.variable} ${playfair.variable} h-full antialiased overflow-x-hidden`}
+      className={`${poppins.variable} ${playfair.variable} h-full antialiased overflow-x-clip`}
     >
-      <body className="min-h-full flex flex-col font-sans overflow-x-hidden">
+      <body className="min-h-full flex flex-col font-sans overflow-x-clip">
         <Script id="microsoft-clarity" strategy="afterInteractive">
           {`
             (function(c,l,a,r,i,t,y){

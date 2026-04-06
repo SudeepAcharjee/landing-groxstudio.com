@@ -32,7 +32,7 @@ const BRANDS = [
 
 export default function BrandLogos() {
   return (
-    <section className={`relative bg-black pt-8 md:pt-15 pb-16 overflow-hidden ${poppins.className}`}>
+    <section className={`relative bg-black pt-8 md:pt-15 overflow-hidden ${poppins.className}`}>
       <div className="relative z-10 max-w-screen-2xl mx-auto">
         <h2 className="text-center text-xl md:text-3xl mb-12 md:mb-16 tracking-tight px-4 text-white">
           Businesses We&apos;ve Worked With
