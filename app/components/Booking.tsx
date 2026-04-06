@@ -4,21 +4,26 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Clock, MapPin, Globe, Mail, Phone, ChevronLeft, ChevronRight, User, Calendar as CalendarIcon, MessageSquare } from "lucide-react";
 
+const TIMES = ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"];
+const DAYS = Array.from({ length: 31 }, (_, i) => i + 1);
+
 export default function Booking() {
+    const [mounted, setMounted] = useState(false);
     const [step, setStep] = useState(1);
     const [selectedDate, setSelectedDate] = useState(28);
     const [selectedTime, setSelectedTime] = useState("");
-    
-    const times = ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"];
-    const days = Array.from({ length: 31 }, (_, i) => i + 1);
+
+    React.useEffect(() => {
+        setMounted(true);
+    }, []);
 
     return (
         <section className="bg-black py-24 px-6 md:px-12">
-            <div className="max-w-6xl mx-auto bg-[#0a0a0a] border border-white/5 rounded-[40px] overflow-hidden shadow-3xl">
+            <div className="max-w-6xl mx-auto bg-[#09090b] border border-white/5 rounded-[40px] overflow-hidden shadow-3xl">
                 <div className="grid grid-cols-1 lg:grid-cols-[400px_1fr]">
                     
                     {/* Left Panel: Info */}
-                    <div className="p-8 md:p-12 border-b lg:border-b-0 lg:border-r border-white/5 bg-[#0f0f0f]/50 flex flex-col items-center text-center lg:items-start lg:text-left">
+                    <div className="p-8 md:p-12 border-b lg:border-b-0 lg:border-r border-white/5 bg-zinc-900 flex flex-col items-center text-center lg:items-start lg:text-left">
                         <div className="flex items-center gap-4 mb-8">
                             <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-[#0066FF]">
                                 <Image 
@@ -94,7 +99,7 @@ export default function Booking() {
                                             {Array.from({ length: 5 }, (_, i) => (
                                                 <div key={`empty-${i}`} className="h-10 md:h-12" />
                                             ))}
-                                            {days.map((day) => (
+                                            {DAYS.map((day) => (
                                                 <button 
                                                     key={day}
                                                     onClick={() => setSelectedDate(day)}
@@ -113,7 +118,7 @@ export default function Booking() {
                                     <div className="mb-10">
                                         <h4 className="text-white/60 text-xs font-bold uppercase tracking-widest mb-6">Available Times</h4>
                                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-                                            {times.map((time) => (
+                                            {TIMES.map((time) => (
                                                 <button 
                                                     key={time}
                                                     onClick={() => setSelectedTime(time)}
@@ -130,7 +135,8 @@ export default function Booking() {
                                     </div>
 
                                     <button 
-                                        disabled={!selectedTime}
+                                        type="button"
+                                        disabled={!mounted || !selectedTime}
                                         onClick={() => setStep(2)}
                                         className="mt-auto w-full py-4 rounded-2xl bg-white text-black font-bold hover:bg-[#0066FF] hover:text-white transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed group"
                                     >

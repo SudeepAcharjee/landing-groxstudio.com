@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
 
 const PROJECTS = [
@@ -47,20 +46,17 @@ const PROJECTS = [
 ];
 
 export default function Showcase() {
-  const header = (
-    <>
-      <h2 className="text-white text-5xl md:text-7xl font-light tracking-tight leading-[1.1]">
-        Our Creative
-      </h2>
-      <h3 className="font-serif italic text-5xl md:text-7xl bg-gradient-to-r from-[#0066FF] to-white bg-clip-text text-transparent mt-2">
-        showcase
-      </h3>
-    </>
-  );
-
   return (
-    <section className="bg-black">
-      <StickyScroll content={PROJECTS} header={header} />
+    <section className="bg-black pt-24 pb-12 px-6 md:px-12">
+      <div className="max-w-7xl mx-auto mb-10">
+        <h2 className="text-white text-4xl md:text-6xl font-light tracking-tight leading-[0.9]">
+          Our Creative
+        </h2>
+        <h3 className="font-serif italic text-4xl md:text-6xl bg-gradient-to-r from-[#0066FF] to-white bg-clip-text text-transparent mt-2">
+          showcase
+        </h3>
+      </div>
+      <StickyScroll content={PROJECTS} />
     </section>
   );
 }

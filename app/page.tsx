@@ -6,11 +6,10 @@ import Services from './components/Services'
 import Showcase from './components/Showcase'
 import About from './components/About'
 import BrandLogos from './components/BrandLogos'
-
-import Blog from './components/Blog'
 import Booking from './components/Booking'
 import Footer from './components/Footer'
 import HowItWork from './components/HowItWork'
+import Testimonials from './components/Testimonials'
 
 
 export default function Page() {
@@ -19,12 +18,12 @@ export default function Page() {
       <Navbar />
       <Hero />
       <BrandLogos />    
-
-
+      <About />
       <Services />
-      {/* <Showcase /> */}
+      <Showcase />
       <HowItWork />
-      <Blog />
+      {/* <Blog /> */}
+      <Testimonials />
       <Booking />
       <Footer />
     </main>

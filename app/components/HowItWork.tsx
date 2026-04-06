@@ -17,11 +17,11 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="relative w-full min-h-fit lg:min-h-[850px] bg-[#000000] overflow-hidden py-12 md:py-24">
+    <section className="relative w-full min-h-fit lg:min-h-[850px] bg-[#000000] overflow-hidden py-12 md:py-20">
       {/* Background Texture */}
       <div 
           className="absolute inset-0 z-0 opacity-30 pointer-events-none bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/images/bg-6.png')" }}
+          style={{ backgroundImage: "url('/images/bg-hww.png')" }}
       />
       
       {/* ---------- HERO CONTENT (Pill + Title) ---------- */}

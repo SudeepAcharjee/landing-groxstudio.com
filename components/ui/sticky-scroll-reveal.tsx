@@ -1,9 +1,15 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 interface StickyScrollItem {
   id?: string;
@@ -16,41 +22,44 @@ interface StickyScrollItem {
 interface StickyScrollProps {
   content: StickyScrollItem[];
   containerClassName?: string;
-  header?: React.ReactNode;
 }
 
-export const StickyScroll = ({ content, containerClassName, header }: StickyScrollProps) => {
+export const StickyScroll = ({ content, containerClassName }: StickyScrollProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const pinRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Total scroll length is based on items
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
 
-  // Calculate the y-translation for the scrolling text column
-  // We move the list from 0 to - (N-1) * 100%
-  const textY = useTransform(
-    scrollYProgress, 
-    [0, 1], 
-    ["0%", `-${(content.length - 1) * 100.5}%`] // Small offset adjustment for precision
-  );
-
+  // Calculate the active index based on raw scroll position
   useEffect(() => {
-    const unsubscribe = scrollYProgress.on("change", (latest) => {
-      // Calculate the approximate index based on scroll progress
-      // Increase sensitivity by multiplying with content.length
-      const index = Math.min(
-        Math.floor(latest * content.length * 1.01), 
-        content.length - 1
-      );
-      if (index !== activeIndex && index >= 0) {
-        setActiveIndex(index);
-      }
+    const container = containerRef.current;
+    const pin = pinRef.current;
+    if (!container || !pin) return;
+
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: container,
+        start: "top top",
+        end: "bottom bottom",
+        pin: pin,
+        pinSpacing: true,
+        scrub: true,
+        onUpdate: (self) => {
+          // Update the active index for image and text changes
+          const rawProgress = self.progress;
+          const index = Math.min(
+            Math.floor(rawProgress * content.length * 1.01), 
+            content.length - 1
+          );
+          if (index >= 0 && index !== activeIndex) {
+            setActiveIndex(index);
+          }
+        }
+      });
     });
-    return () => unsubscribe();
-  }, [scrollYProgress, activeIndex, content.length]);
+
+    return () => ctx.revert();
+  }, [content.length, activeIndex]);
 
   return (
     <div 
@@ -64,77 +73,59 @@ export const StickyScroll = ({ content, containerClassName, header }: StickyScro
         style={{ backgroundColor: content[activeIndex]?.color || "#0066FF" }} 
       />
 
-      {/* Sticky Container (Pinned Section) */}
-      <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 w-full h-full flex flex-col justify-center relative z-10">
+      {/* Sticky Container (Pinned Section via GSAP) */}
+      <div ref={pinRef} className="h-screen w-full flex items-center justify-center overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 md:px-1 w-full relative z-10">
           
-          {/* Header (Pinned as part of the sticky container) */}
-          {header && (
-            <div className="absolute top-12 left-6 md:left-12 z-20">
-              {header}
-            </div>
-          )}
-
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center w-full">
             
-            {/* Left: 'Scrolling' Text Column */}
-            <div className="relative h-[400px] md:h-[500px] flex flex-col justify-center overflow-hidden order-2 lg:order-1 pt-20 lg:pt-0">
-              <motion.div 
-                style={{ y: textY }}
-                className="flex flex-col"
-              >
-                {content.map((item, index) => (
-                  <div 
-                    key={index} 
-                    className="h-[400px] md:h-[500px] flex flex-col justify-center gap-6"
-                  >
-                     {item.id && (
-                      <span className={cn(
-                        "font-bold text-7xl md:text-[8rem] leading-none tracking-tighter select-none transition-all duration-700",
-                        activeIndex === index ? "text-white/25" : "text-white/5 opacity-40 blur-[1px]"
-                      )}>
-                        {item.id}
-                      </span>
-                    )}
-                    
-                    <h2 className={cn(
-                      "text-white text-5xl md:text-7xl font-light tracking-tight leading-[0.9] transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)]",
-                      activeIndex === index ? "opacity-100 translate-x-0" : "opacity-20 -translate-x-8 blur-[2px]"
-                    )}>
-                      {item.title}
+            {/* Left: Synchronized Text Column */}
+            <div className="relative h-[320px] md:h-[400px] flex flex-col justify-center overflow-hidden order-2 lg:order-1">
+              <AnimatePresence mode="wait">
+                <motion.div 
+                  key={activeIndex}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -30 }}
+                  transition={{ 
+                    duration: 0.6, 
+                    ease: [0.16, 1, 0.3, 1] 
+                  }}
+                  className="flex flex-col gap-4"
+                >
+                    <h2 className="text-white text-4xl md:text-6xl font-light tracking-tight leading-[1]">
+                      {content[activeIndex].title}
                     </h2>
                     
-                    <p className={cn(
-                      "text-white/60 text-lg md:text-xl max-w-md leading-relaxed transition-all duration-1000 delay-100 ease-[cubic-bezier(0.23,1,0.32,1)] mt-2",
-                      activeIndex === index ? "opacity-100 translate-x-0 scale-100" : "opacity-10 -translate-x-4 scale-95 blur-[1px]"
-                    )}>
-                      {item.description}
+                    <p className="text-white/50 text-base md:text-lg max-w-md leading-relaxed">
+                      {content[activeIndex].description}
                     </p>
 
-                    <div 
-                      className="h-1 w-24 rounded-full transition-all duration-1000 ease-in-out"
-                      style={{ 
-                        backgroundColor: item.color || "#0066FF",
-                        width: activeIndex === index ? 96 : 0,
-                        opacity: activeIndex === index ? 1 : 0
-                      }}
-                    />
-                  </div>
-                ))}
-              </motion.div>
+                    <button
+                      className="flex items-center gap-3 text-white font-semibold text-sm group/btn mt-2"
+                    >
+                      <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover/btn:bg-[#0066FF] group-hover/btn:border-transparent transition-all duration-500">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-500 group-hover/btn:rotate-45">
+                          <path d="M4.5 13.5L13.5 4.5M13.5 4.5H6.75M13.5 4.5V11.25" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </div>
+                      <span>View Case Study</span>
+                    </button>
+                </motion.div>
+              </AnimatePresence>
             </div>
 
             {/* Right: Fixed/Pinned Image Column */}
-            <div className="relative w-full aspect-[4/3] lg:aspect-[1/1] xl:aspect-[4/3] rounded-[48px] overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.5)] bg-[#0a0a0a] order-1 lg:order-2">
+            <div className="relative w-full aspect-square mt-20 overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.5)] bg-[#0a0a0a] order-1 lg:order-2 group/img">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeIndex}
-                  initial={{ opacity: 0, scale: 1.15, filter: "blur(25px)" }}
+                  initial={{ opacity: 0, scale: 1.1, filter: "blur(20px)" }}
                   animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                  exit={{ opacity: 0, scale: 1.05, filter: "blur(25px)" }}
+                  exit={{ opacity: 0, scale: 1.05, filter: "blur(20px)" }}
                   transition={{ 
-                    duration: 0.8, 
-                    ease: [0.16, 1, 0.3, 1] 
+                    duration: 0.7, 
+                    ease: [0.19, 1, 0.22, 1] 
                   }}
                   className="absolute inset-0"
                 >
@@ -142,16 +133,18 @@ export const StickyScroll = ({ content, containerClassName, header }: StickyScro
                     src={content[activeIndex].image}
                     alt={content[activeIndex].title}
                     fill
-                    className="object-cover"
+                    className="object-cover group-hover/img:scale-105 transition-transform duration-1000"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
                 </motion.div>
               </AnimatePresence>
               
-              {/* Decorative Glow based on project color */}
+              {/* Project Color Accent Overlay */}
               <div 
-                className="absolute inset-0 rounded-[48px] border-[1.5px] border-white/10 pointer-events-none z-20 transition-colors duration-1000"
-                style={{ boxShadow: `inset 0 0 60px ${content[activeIndex].color || "#0066FF"}15` }}
+                className="absolute inset-0 pointer-events-none z-20 transition-all duration-1000 opacity-30"
+                style={{ 
+                  background: `radial-gradient(circle at bottom right, ${content[activeIndex].color || "#0066FF"}33, transparent 70%)` 
+                }}
               />
             </div>
 

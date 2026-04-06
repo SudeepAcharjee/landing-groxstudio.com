@@ -45,7 +45,7 @@ export default function Hero() {
             ref={containerRef}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            className="relative min-h-[100vh] flex flex-col items-center justify-center bg-[#0a0a0a] overflow-hidden px-4 pt-20"
+            className="relative md:min-h-[100vh] min-h-[80vh] flex flex-col items-center justify-center bg-[#0a0a0a] overflow-hidden px-4 pt-20"
         >
             {/* Background Image */}
             <div 
@@ -95,7 +95,7 @@ export default function Hero() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                                className="inline-block"
+                                className="inline-block font-bold"
                             >
                                 <CanvasText
                                     text="Futures"
@@ -142,7 +142,7 @@ export default function Hero() {
                         initial={{ opacity: 0, scale: 0.8, y: -30 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                        className="absolute md:top-[25%] top-[35%] right-2 md:-right-10 group pointer-events-none md:pointer-events-auto"
+                        className="absolute md:top-[25%] top-[35%] -right-2 md:-right-10 group pointer-events-none md:pointer-events-auto"
                     >
                         <div className="relative">
                             <div className="bg-white text-black px-4 py-1.5 rounded-full text-[12px] md:text-[20px] font-semibold shadow-xl transition-transform active:scale-95">
