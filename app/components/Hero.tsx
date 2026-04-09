@@ -2,8 +2,15 @@
 import React, { useRef } from "react";
 import { cn } from "@/lib/utils";
 import { CanvasText } from "@/components/ui/canvas-text";
-import { ChevronsRight } from "lucide-react";
+import { ArrowUpRight, ChevronsRight } from "lucide-react";
 import { motion, useMotionValue, useSpring, useTransform, useScroll } from "framer-motion";
+import { Noto_Sans } from "next/font/google";
+import Link from "next/link";
+
+const notoSans = Noto_Sans({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export default function Hero() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -199,21 +206,27 @@ export default function Hero() {
                     transition={{ duration: 0.8, delay: 1, ease: [0.16, 1, 0.3, 1] }}
                     className="mt-12 flex justify-center"
                 >
-                    <button className="group relative flex items-center justify-between bg-white/[0.03] border border-white/10 hover:border-[#0066FF]/30 p-1.5 rounded-full transition-all duration-500 overflow-hidden min-w-[220px]">
-                        {/* THE EXPANDING BACKGROUND THAT STARTS FROM THE ICON CIRCLE */}
-                        <div className="absolute left-1.5 top-1.5 bottom-1.5 w-12 bg-[#0066FF] rounded-full group-hover:w-[calc(100%-12px)] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] z-0 shadow-[0_0_20px_rgba(0,102,255,0.3)]" />
-                        
-                        <div className="relative z-10 flex items-center w-full">
-                            <div className="flex items-center justify-center w-12 h-12 rounded-full overflow-hidden transition-all duration-500">
-                                <ChevronsRight className="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-500" />
-                            </div>
-                            <div className="flex-1 text-center pr-6">
-                                <span className="text-white text-lg font-semibold tracking-tight select-none">
-                                    Get Started
-                                </span>
-                            </div>
+                    <Link
+                      href="#booking"
+                      className="group relative flex items-center justify-between bg-white/[0.03] border border-[#0066FF] hover:border-[#0066FF]/80 p-1.5 rounded-full transition-all duration-500 overflow-hidden min-w-[170px]"
+                    >
+                      {/* Animated BG */}
+                      <div className="absolute left-1.5 top-1.5 bottom-1.5 w-8 bg-[#0066FF] rounded-full group-hover:w-[calc(100%-12px)] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] z-0 shadow-[0_0_20px_rgba(0,102,255,0.3)]" />
+
+                      <div className="relative z-10 flex items-center w-full">
+                        <div className="flex items-center justify-center w-8 h-8 rounded-full">
+                          <ArrowUpRight className="w-4 h-4 text-white group-hover:scale-110 transition-transform duration-500" />
                         </div>
-                    </button>
+
+                        <div className="flex-1 text-center pr-3 pl-1">
+                          <span
+                            className={`text-white text-[17px] font-medium tracking-tight ${notoSans.className}`}
+                          >
+                            Book a Call
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
                 </motion.div>
             </div>
 

@@ -97,7 +97,7 @@ export default function Navbar() {
           <div className="flex items-center gap-4">
             <Link
               href="#booking"
-              className="group relative flex items-center justify-between bg-white/[0.03] border border-white/10 hover:border-[#0066FF]/30 p-1.5 rounded-full transition-all duration-500 overflow-hidden min-w-[170px]"
+              className="group relative flex items-center justify-between bg-white/[0.03] border border-[#0066FF] hover:border-[#0066FF]/80 p-1.5 rounded-full transition-all duration-500 overflow-hidden min-w-[170px]"
             >
               {/* Animated BG */}
               <div className="absolute left-1.5 top-1.5 bottom-1.5 w-8 bg-[#0066FF] rounded-full group-hover:w-[calc(100%-12px)] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] z-0 shadow-[0_0_20px_rgba(0,102,255,0.3)]" />
@@ -160,7 +160,7 @@ export default function Navbar() {
               <Link
                 href="#booking"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="group relative flex items-center justify-between bg-white/[0.03] border border-white/10 hover:border-[#0066FF]/30 p-1.5 rounded-full transition-all duration-500 overflow-hidden w-[220px]"
+                className="group relative flex items-center justify-between bg-white/[0.03] border border-[#0066FF] hover:border-[#0066FF]/80 p-1.5 rounded-full transition-all duration-500 overflow-hidden w-[220px]"
               >
                 <div className="absolute left-1.5 top-1.5 bottom-1.5 w-10 bg-[#0066FF] rounded-full group-hover:w-[calc(100%-12px)] transition-all duration-500" />
 

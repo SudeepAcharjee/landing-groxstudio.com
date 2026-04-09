@@ -19,7 +19,9 @@ export const metadata: Metadata = {
   title: "GroxStudio",
   description: "A Creative and Innovative Agency",
   icons: {
-    icon: "/logos/navlog.jpeg",
+    icon: "/logos/icon.png",
+    shortcut: "/logos/icon.png",
+    apple: "/logos/icon.png",
   },
 };
 

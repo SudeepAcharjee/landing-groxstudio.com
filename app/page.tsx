@@ -17,9 +17,10 @@ export default function Page() {
     <main className="relative min-h-screen bg-black">
       <Navbar />
       <Hero />
-      <BrandLogos />    
+      <BrandLogos />  
+       <Services />  
       <About />
-      <Services />
+
       <Showcase />
       <HowItWork />
       {/* <Blog /> */}

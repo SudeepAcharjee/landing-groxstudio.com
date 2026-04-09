@@ -32,10 +32,10 @@ const BRANDS = [
 
 export default function BrandLogos() {
   return (
-    <section className={`relative bg-black pt-8 md:pt-15 overflow-hidden ${poppins.className}`}>
+    <section className={`relative bg-black pt-20 pb-20 overflow-hidden ${poppins.className}`}>
       <div className="relative z-10 max-w-screen-2xl mx-auto">
-        <h2 className="text-center text-xl md:text-3xl mb-12 md:mb-16 tracking-tight px-4 text-white">
-          Businesses We&apos;ve Worked With
+        <h2 className="text-center text-xl md:text-3xl mb-8 md:mb-8 tracking-tight px-4 text-white">
+          Trusted By
         </h2>
 
         {/* Unified Infinite horizontal scroll for all screens */}
@@ -48,14 +48,14 @@ export default function BrandLogos() {
             animation: marquee-slide 30s linear infinite;
           }
         `}</style>
-        <div className="w-full overflow-hidden relative">
-          <div className="flex w-max items-center will-change-transform animate-marquee-slide">
+        <div className="w-full overflow-hidden relative group">
+          <div className="flex w-max items-center will-change-transform animate-marquee-slide group-hover:[animation-play-state:paused]">
             {[...Array(2)].map((_, i) => (
               <div key={i} className="flex gap-16 md:gap-32 pr-16 md:pr-32 shrink-0 items-center">
                 {BRANDS.map((src, idx) => (
                   <div
                     key={`${i}-${idx}`}
-                    className="flex items-center justify-center grayscale-0 hover:scale-110 transition-all duration-300 h-8 sm:h-10 md:h-14 w-24 sm:w-28 md:w-40 px-2 sm:px-4 shrink-0"
+                    className="flex items-center justify-center h-8 sm:h-10 md:h-14 w-24 sm:w-28 md:w-40 px-2 sm:px-4 shrink-0"
                   >
                     <Image
                       src={src}
@@ -63,17 +63,13 @@ export default function BrandLogos() {
                       width={160}
                       height={64}
                       loading="eager"
-                      className="max-h-full max-w-full object-contain opacity-70 hover:opacity-100 transition-opacity duration-300"
+                      className="max-h-full max-w-full object-contain"
                     />
                   </div>
                 ))}
               </div>
             ))}
           </div>
-          
-          {/* Fading edges gradient */}
-          <div className="absolute inset-y-0 left-0 w-20 md:w-40 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
-          <div className="absolute inset-y-0 right-0 w-20 md:w-40 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
         </div>
       </div>
     </section>
