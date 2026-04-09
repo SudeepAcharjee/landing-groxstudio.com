@@ -68,6 +68,7 @@ export default function About() {
               src="/founder_about_section_1775458582082.png"
               alt="Grox Studio Founder"
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 50vw"
               className="object-cover transition-transform duration-[2000ms] group-hover/card:scale-105"
             />
             

@@ -123,6 +123,7 @@ export const StickyScroll = ({ content, containerClassName }: StickyScrollProps)
                 src={content[activeCard].image}
                 alt={content[activeCard].title}
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />

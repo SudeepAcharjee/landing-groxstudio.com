@@ -55,6 +55,7 @@ export default function Booking() {
                                         src="/images/lillyen.png" 
                                         alt="Lillyen White" 
                                         fill 
+                                        sizes="56px"
                                         className="object-cover"
                                     />
                                 </div>

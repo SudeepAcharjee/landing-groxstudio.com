@@ -37,6 +37,7 @@ const CustomLogo = () => (
       width={100}
       height={32}
       className="object-contain brightness-0 invert"
+      style={{ height: "auto" }}
       priority
     />
   </Link>
