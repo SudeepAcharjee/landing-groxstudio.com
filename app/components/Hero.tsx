@@ -3,12 +3,19 @@ import React, { useRef } from "react";
 import { cn } from "@/lib/utils";
 import { CanvasText } from "@/components/ui/canvas-text";
 import { ChevronsRight } from "lucide-react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform, useScroll } from "framer-motion";
 
 export default function Hero() {
     const containerRef = useRef<HTMLDivElement>(null);
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
+
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start start", "end start"]
+    });
+    
+    const boxScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
 
     // Smooth springs for buttery motion
     const springX = useSpring(mouseX, { stiffness: 100, damping: 20 });
@@ -55,7 +62,10 @@ export default function Hero() {
 
             <div className="relative z-10 w-full max-w-4xl">
                 {/* Bounding Box Design */}
-                <div className="relative border border-transparent md:border-[#0066FF]/30 p-6 md:p-16 flex flex-col items-center justify-center min-h-[300px] md:min-h-[380px]">
+                <motion.div 
+                    style={{ scale: boxScale }}
+                    className="relative border border-transparent md:border-[#0066FF]/30 p-6 md:p-16 flex flex-col items-center justify-center min-h-[300px] md:min-h-[380px]"
+                >
                     {/* Corner Squares */}
                     <div className="absolute -top-1.5 -left-1.5 w-3 h-3 bg-[#0066FF] hidden md:block" />
                     <div className="absolute -top-1.5 -right-1.5 w-3 h-3 bg-[#0066FF] hidden md:block" />
@@ -180,7 +190,7 @@ export default function Hero() {
                     >
                         <p>Transforming Ideas into Reality Crafting the Digital Future, One Design at a Time</p>
                     </motion.div>
-                </div>
+                </motion.div>
 
                 {/* CTA Button */}
                 <motion.div 
