@@ -17,9 +17,10 @@ interface StickyScrollItem {
 interface StickyScrollProps {
   content: StickyScrollItem[];
   containerClassName?: string;
+  header?: React.ReactNode;
 }
 
-export const StickyScroll = ({ content, containerClassName }: StickyScrollProps) => {
+export const StickyScroll = ({ content, containerClassName, header }: StickyScrollProps) => {
   const [activeCard, setActiveCard] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
   
@@ -56,14 +57,25 @@ export const StickyScroll = ({ content, containerClassName }: StickyScrollProps)
       />
 
       {/* Left: Scrollable Text List */}
-      <div className="w-full lg:w-1/2 relative z-10">
-        <div className="py-[30vh]">
+      <div className="w-full lg:w-1/2 relative z-10 px-6 lg:px-0">
+        {header && (
+          <div className="sticky top-0 z-30 bg-black pt-20 lg:pt-[20vh] pb-10">
+            {header}
+          </div>
+        )}
+        <div className={cn(header ? "pb-[40vh] pt-[10vh]" : "py-[30vh]", "relative z-0")}>
           {content.map((item, index) => (
-            <div key={item.title + index} className="mb-32 lg:mb-40 last:mb-0">
+            <motion.div 
+              key={item.title + index} 
+              onViewportEnter={() => setActiveCard(index)}
+              viewport={{ margin: "-45% 0px -50% 0px" }}
+              className="mb-40 lg:mb-60 last:mb-0"
+            >
               <motion.h2
                 initial={{ opacity: 0 }}
                 animate={{
-                  opacity: activeCard === index ? 1 : 0.3,
+                  opacity: activeCard === index ? 1 : 0.15,
+                  scale: activeCard === index ? 1 : 0.98,
                 }}
                 transition={{ duration: 0.5 }}
                 className="text-4xl md:text-5xl font-light tracking-tight text-white mb-6"
@@ -73,7 +85,7 @@ export const StickyScroll = ({ content, containerClassName }: StickyScrollProps)
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{
-                  opacity: activeCard === index ? 1 : 0.3,
+                  opacity: activeCard === index ? 1 : 0.15,
                 }}
                 transition={{ duration: 0.5 }}
                 className="text-base md:text-lg text-white/50 leading-relaxed max-w-md mb-8"
@@ -97,19 +109,19 @@ export const StickyScroll = ({ content, containerClassName }: StickyScrollProps)
                        </div>
                        <div className="flex-1 text-center pr-3">
                            <span className="text-white text-sm font-semibold tracking-tight select-none">
-                               View Deatils
+                               View Details
                            </span>
                        </div>
                    </div>
                  </button>
               </motion.div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
 
       {/* Right: Sticky Image Gallery representing the active card */}
-      <div className="hidden lg:block w-1/2 sticky top-[20vh] h-[60vh] rounded-[32px] overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.4)] z-10 bg-black/50">
+      <div className="hidden lg:block w-1/2 sticky top-[35vh] h-[55vh] rounded-[32px] overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.4)] z-10 bg-black/50">
          <AnimatePresence mode="wait">
             <motion.div
               key={activeCard}

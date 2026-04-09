@@ -46,17 +46,20 @@ const PROJECTS = [
 ];
 
 export default function Showcase() {
+  const showcaseHeader = (
+    <div>
+      <h2 className="text-white text-[1.75rem] xs:text-[2rem] md:text-[2.875rem] leading-[34px] xs:leading-[40px] md:leading-[50px] font-medium tracking-[-1px] text-balance">
+        Our Creative
+      </h2>
+      <h3 className="font-serif italic text-[1.75rem] xs:text-[2rem] md:text-[2.875rem] leading-[34px] xs:leading-[40px] md:leading-[50px] font-medium tracking-[-1px] bg-gradient-to-r from-[#0066FF] to-white bg-clip-text text-transparent text-balance">
+        showcase
+      </h3>
+    </div>
+  );
+
   return (
-    <section className="bg-black py-10 px-6 md:px-12 md:pt-20 pt-10">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-white text-4xl md:text-6xl font-light tracking-tight leading-[0.9]">
-          Our Creative
-        </h2>
-        <h3 className="font-serif italic text-4xl md:text-6xl bg-gradient-to-r from-[#0066FF] to-white bg-clip-text text-transparent mt-2">
-          showcase
-        </h3>
-      </div>
-      <StickyScroll content={PROJECTS} />
+    <section className="bg-black py-10 md:py-15 lg:py-40">
+      <StickyScroll content={PROJECTS} header={showcaseHeader} />
     </section>
   );
 }
