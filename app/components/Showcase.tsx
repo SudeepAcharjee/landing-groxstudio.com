@@ -58,7 +58,7 @@ export default function Showcase() {
   );
 
   return (
-    <section className="bg-black py-10 md:py-15 lg:py-40">
+    <section className="bg-black py-0">
       <StickyScroll content={PROJECTS} header={showcaseHeader} />
     </section>
   );

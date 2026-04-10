@@ -19,7 +19,8 @@ export default function About() {
     <section
       id="about"
       ref={containerRef}
-      className="relative bg-black  px-6 md:px-12 pt-20 flex flex-col items-center justify-center text-center overflow-hidden min-h-screen"
+      style={{ position: "relative" }}
+      className="bg-black px-6 md:px-12 pt-20 flex flex-col items-center justify-center text-center overflow-hidden min-h-screen"
     >
       <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center gap-12 w-full">
 
@@ -65,6 +66,7 @@ export default function About() {
                 muted
                 playsInline
                 className="w-full h-full object-cover"
+                onError={(e) => { (e.target as HTMLVideoElement).style.display = "none"; }}
               />
             </div>
           </div>

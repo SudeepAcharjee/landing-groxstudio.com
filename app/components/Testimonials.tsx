@@ -9,28 +9,28 @@ const TESTIMONIALS = [
     name: "Yomi Denzel",
     role: "E-Commerce 2.0",
     video: "https://www.w3schools.com/html/mov_bbb.mp4", // Replace with real video URL
-    image: "/testimonial_people_grid_1775459683682.png"
+    image: "/images/lillyen.png"
   },
   {
     id: 2,
     name: "Timothée Moiroux",
     role: "Investissement Immobillier",
     video: "https://www.w3schools.com/html/mov_bbb.mp4", // Replace with real video URL
-    image: "/testimonial_people_2_1775459727256.png"
+    image: "/images/lillyen.png"
   },
   {
     id: 3,
     name: "David Sequiera",
     role: "Closing",
     video: "https://www.w3schools.com/html/mov_bbb.mp4", // Replace with real video URL
-    image: "/testimonial_people_grid_1775459683682.png"
+    image: "/images/lillyen.png"
   },
   {
     id: 4,
     name: "Manuel Ravier",
     role: "Investissement Immobillier",
     video: "https://www.w3schools.com/html/mov_bbb.mp4", // Replace with real video URL
-    image: "/testimonial_people_2_1775459727256.png"
+    image: "/images/lillyen.png"
   },
 ];
 
