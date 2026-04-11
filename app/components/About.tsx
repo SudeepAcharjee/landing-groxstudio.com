@@ -20,7 +20,7 @@ export default function About() {
       id="about"
       ref={containerRef}
       style={{ position: "relative" }}
-      className="bg-black px-6 md:px-12 pt-20 flex flex-col items-center justify-center text-center overflow-hidden min-h-screen pb-30"
+      className="bg-black px-2 md:px-12 pt-10 flex flex-col items-center justify-start md:justify-center text-center overflow-hidden min-h-fit md:min-h-screen pb-10 md:pb-30"
     >
       <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center gap-12 w-full">
 
@@ -46,7 +46,7 @@ export default function About() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           style={{ width: videoWidth }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="relative w-full h-[300px] md:h-[500px] lg:h-[650px] mt-12 mx-auto rounded-[32px] md:rounded-[48px] shadow-[0_0_100px_rgba(0,102,255,0.6)]"
+          className="relative w-full aspect-video mt-12 mx-auto rounded-[32px] md:rounded-[48px] shadow-[0_0_100px_rgba(0,102,255,0.6)]"
         >
           {/* Dedicated overflow masking layer to squash browser clipping artifacts */}
           <div className="absolute inset-0 w-full h-full overflow-hidden rounded-[32px] md:rounded-[48px] p-[1.5px] isolate transform-gpu">
@@ -62,7 +62,7 @@ export default function About() {
                 src="/images/abg.png"
                 alt="About background"
                 fill
-                className="object-cover"
+                className="object-contain"
                 priority
               />
             </div>

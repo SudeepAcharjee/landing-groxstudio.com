@@ -1,5 +1,5 @@
 "use client";
-
+import { cn } from "@/lib/utils";
 import {
   Navbar as AceternityNavbar,
   NavBody,
@@ -139,45 +139,63 @@ export default function Navbar() {
           <MobileNavMenu
             isOpen={isMobileMenuOpen}
             onClose={() => setIsMobileMenuOpen(false)}
-            className={!isScrolled ? "backdrop-blur-none bg-black" : ""}
+            className={cn(
+              "bg-black/95 backdrop-blur-xl",
+              !isScrolled && "bg-black"
+            )}
           >
-            {navItems.map((item, idx) => {
-              return (
-                <div key={idx} className="w-full text-center">
+            {/* Atmospheric Background Glows inside mobile menu */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+              <div className="absolute top-1/4 -left-1/4 w-[500px] h-[500px] bg-[#0066FF]/10 blur-[120px] rounded-full" />
+              <div className="absolute bottom-1/4 -right-1/4 w-[500px] h-[500px] bg-purple-600/10 blur-[120px] rounded-full" />
+            </div>
+
+            <div className="relative z-10 flex flex-col items-center gap-8 w-full">
+              {navItems.map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isMobileMenuOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ delay: 0.1 + idx * 0.1, duration: 0.5 }}
+                >
                   <Link
                     href={item.link}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className={`text-neutral-300 hover:text-white block py-2 text-lg ${notoSans.className}`}
+                    className={`text-neutral-400 hover:text-white transition-colors duration-300 block py-2 text-2xl font-light tracking-tight ${notoSans.className}`}
                   >
                     {item.name}
                   </Link>
-                </div>
-              );
-            })}
+                </motion.div>
+              ))}
 
-            {/* CTA */}
-            <div className="flex w-full flex-col gap-4 mt-8 px-4 items-center">
-              <Link
-                href="#booking"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="group relative flex items-center justify-between bg-white/[0.03] border border-[#0066FF] hover:border-[#0066FF]/80 p-1.5 rounded-full transition-all duration-500 overflow-hidden w-[220px]"
+              <motion.div
+                 initial={{ opacity: 0, scale: 0.9 }}
+                 animate={isMobileMenuOpen ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+                 transition={{ delay: 0.1 + navItems.length * 0.1, duration: 0.5 }}
+                 className="mt-12"
               >
-                <div className="absolute left-1.5 top-1.5 bottom-1.5 w-10 bg-[#0066FF] rounded-full group-hover:w-[calc(100%-12px)] transition-all duration-500" />
+                <Link
+                  href="#booking"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="group relative flex items-center justify-between bg-white/[0.03] border border-[#0066FF] hover:border-[#0066FF]/80 p-1.5 rounded-full transition-all duration-500 overflow-hidden w-[220px]"
+                >
+                  <div className="absolute left-1.5 top-1.5 bottom-1.5 w-10 bg-[#0066FF] rounded-full group-hover:w-[calc(100%-12px)] transition-all duration-500" />
 
-                <div className="relative z-10 flex items-center w-full">
-                  <div className="flex items-center justify-center w-10 h-10 rounded-full">
-                    <ArrowUpRight className="w-5 h-5 text-white" />
-                  </div>
+                  <div className="relative z-10 flex items-center w-full">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-full">
+                      <ArrowUpRight className="w-5 h-5 text-white" />
+                    </div>
 
-                  <div className="flex-1 text-center pr-3 pl-1">
-                    <span
-                      className={`text-white text-[17px] font-medium ${notoSans.className}`}
-                    >
-                      Book a Call
-                    </span>
+                    <div className="flex-1 text-center pr-3 pl-1">
+                      <span
+                        className={`text-white text-[18px] font-medium tracking-tight ${notoSans.className}`}
+                      >
+                        Book a Call
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </Link>
+                </Link>
+              </motion.div>
             </div>
           </MobileNavMenu>
         </MobileNav>

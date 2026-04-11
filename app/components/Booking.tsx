@@ -169,12 +169,12 @@ export default function Booking() {
 
                                         <div className="space-y-3">
                                             <h4 className="text-white/60 text-[10px] font-bold uppercase tracking-widest px-1">Available Slots</h4>
-                                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                                            <div className="flex overflow-x-auto sm:grid sm:grid-cols-4 gap-2 pb-2 scrollbar-hide">
                                                 {TIMES.map((time) => (
                                                     <button 
                                                         key={time}
                                                         onClick={() => setSelectedTime(time)}
-                                                        className={`py-3 rounded-2xl border flex items-center justify-center text-xs font-bold transition-all relative overflow-hidden ${
+                                                        className={`flex-shrink-0 min-w-[80px] sm:min-w-0 py-3 rounded-2xl border flex items-center justify-center text-xs font-bold transition-all relative overflow-hidden ${
                                                             selectedTime === time 
                                                             ? "border-[#0066FF] text-white shadow-lg shadow-[#0066FF]/20" 
                                                             : "bg-white/5 border-[#0066FF]/10 text-white/40 hover:border-[#0066FF]/40 hover:text-white hover:shadow-[0_0_15px_rgba(0,102,255,0.1)]"

@@ -17,7 +17,7 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="relative w-full min-h-fit lg:min-h-[600px] bg-black py-10 px-6 md:px-12 md:pt-20 pt-10">
+    <section className="relative w-full min-h-fit lg:min-h-[600px] bg-black py-10 px-6 md:px-12 md:pt-20">
       <div
         className="
           px-6 pb-4 md:!px-8 lg:!px-0 lg:absolute lg:left-[101px] lg:top-[65px]

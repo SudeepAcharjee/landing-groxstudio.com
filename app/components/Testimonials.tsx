@@ -99,7 +99,7 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section className="bg-black py-10 px-0 md:pt-30 pt-10 overflow-hidden relative">
+    <section className="bg-black py-10 px-0 md:pt-30 overflow-hidden relative">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100vh] bg-[radial-gradient(circle_at_center,rgba(0,102,255,0.03)_0%,transparent_70%)] pointer-events-none z-0" />
 
       <div className="relative z-10">

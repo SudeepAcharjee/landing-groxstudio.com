@@ -62,7 +62,7 @@ export const StickyScroll = ({ content, containerClassName, header }: StickyScro
           style={{ backgroundColor: "#0066FF" }} 
         />
 
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-10 lg:gap-24 relative z-10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full flex flex-col lg:flex-row items-center justify-start pt-16 lg:pt-0 lg:justify-between gap-10 lg:gap-24 relative z-10">
           {/* Mobile Image Gallery (Top) */}
           <div className="lg:hidden w-full relative h-[30vh] rounded-2xl overflow-hidden z-20 mb-4">
             <AnimatePresence mode="popLayout">
