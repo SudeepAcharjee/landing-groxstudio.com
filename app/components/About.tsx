@@ -56,17 +56,14 @@ export default function About() {
             {/* Animated Blue Gradient Border Layer (Comet Trail) */}
             <div className="absolute inset-[-100%] z-0 bg-[conic-gradient(from_0deg_at_50%_50%,#0066ff00_0%,#0066ff00_50%,#0066FF_100%)] animate-[spin_6s_linear_infinite]" />
             
-            {/* Video Container */}
+            {/* Image Container */}
             <div className="w-full h-full rounded-[30.5px] md:rounded-[46.5px] overflow-hidden relative z-10">
-              <video
-                src="/videos/about_video.mp4"
-                poster="/founder_about_section_1775458582082.png"
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover"
-                onError={(e) => { (e.target as HTMLVideoElement).style.display = "none"; }}
+              <Image
+                src="/images/abg.png"
+                alt="About background"
+                fill
+                className="object-cover"
+                priority
               />
             </div>
           </div>
