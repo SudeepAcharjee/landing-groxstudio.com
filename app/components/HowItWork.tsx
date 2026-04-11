@@ -27,12 +27,8 @@ const HeroSection: React.FC = () => {
       >
         {/* count pill */}
         <div
-          className="
-            flex items-center justify-center gap-[10px]
-            px-[20px] py-[10px]
-            bg-[#0066FF]/10 border border-white/10
-            rounded-[59px] w-fit
-          "
+          className="flex items-center justify-center gap-[10px] px-[20px] py-[10px] bg-[#0066FF]/10 border border-[#0066FF]/30 rounded-[59px] w-fit"
+          style={{ boxShadow: "0 0 14px rgba(0,102,255,0.35), 0 0 40px rgba(0,102,255,0.15)" }}
         >
           <div
             className="
@@ -46,7 +42,7 @@ const HeroSection: React.FC = () => {
         </div>
 
         {/* title */}
-        <motion.h1
+        <motion.div
           variants={{
             hidden: { opacity: 0, y: 28 },
             show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } },
@@ -54,16 +50,14 @@ const HeroSection: React.FC = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.6 }}
-          className="
-            font-poppins font-light text-white
-            text-2xl sm:text-3xl md:text-4xl lg:text-[54px]
-            leading-[120%] md:leading-[69px]
-            tracking-[-1px] md:tracking-[-3.69497px]
-            max-w-full break-words
-          "
         >
-          Automation, Made Simple
-        </motion.h1>
+          <h2 className="text-white text-[1.75rem] xs:text-[2rem] md:text-[2.875rem] leading-[34px] xs:leading-[40px] md:leading-[50px] font-medium tracking-[-1px] text-balance">
+            Automation, Made
+          </h2>
+          <h3 className="font-serif italic text-[1.75rem] xs:text-[2rem] md:text-[2.875rem] leading-[34px] xs:leading-[40px] md:leading-[50px] font-medium tracking-[-1px] bg-gradient-to-r from-[#0066FF] to-white bg-clip-text text-transparent text-balance">
+            Simple
+          </h3>
+        </motion.div>
       </div>
 
       {/* ---------- DESKTOP: absolute-positioned cards ---------- */}
@@ -124,7 +118,7 @@ const HeroSection: React.FC = () => {
             scale: 1,
             transition: { delay: i * 0.1, duration: 0.5, ease: "easeOut" },
           }),
-        }} className="md:absolute md:left-[1200px] md:top-[330px] w-[191px] h-[254px] flex flex-col items-center gap-2">
+        }} className="md:absolute md:left-[1200px] md:top-[330px] w-[191px] h-[254px] flex flex-col items-center gap-2 pr-16">
           <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70 font-roboto font-medium text-[18px] leading-[24px]">Scale</span>
           <p className="text-[#9B96B0] font-roboto text-[16px] leading-[24px] w-[191px] text-center">Monitor, optimize, and expand automation as you grow.</p>
           <div

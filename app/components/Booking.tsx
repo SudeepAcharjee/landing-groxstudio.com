@@ -5,13 +5,24 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Clock, Globe, Mail, Phone, ChevronLeft, ChevronRight, User, MessageSquare, ArrowRight, Sparkles } from "lucide-react";
 
 const TIMES = ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"];
-const DAYS = Array.from({ length: 31 }, (_, i) => i + 1);
 
 export default function Booking() {
     const [mounted, setMounted] = useState(false);
     const [step, setStep] = useState(1);
     const [selectedDate, setSelectedDate] = useState(28);
     const [selectedTime, setSelectedTime] = useState("");
+    const [viewDate, setViewDate] = useState(new Date(2025, 6, 1)); // Default to July 2025
+
+    const nextMonth = () => {
+        setViewDate(new Date(viewDate.getFullYear(), viewDate.getMonth() + 1, 1));
+    };
+
+    const prevMonth = () => {
+        setViewDate(new Date(viewDate.getFullYear(), viewDate.getMonth() - 1, 1));
+    };
+
+    const daysInMonth = new Date(viewDate.getFullYear(), viewDate.getMonth() + 1, 0).getDate();
+    const startDay = new Date(viewDate.getFullYear(), viewDate.getMonth(), 1).getDay();
 
     React.useEffect(() => {
         setMounted(true);
@@ -20,9 +31,9 @@ export default function Booking() {
     if (!mounted) return null;
 
     return (
-        <section id="booking" className="relative py-10 px-6 md:px-12 md:pt-20 pt-10 overflow-hidden bg-black isolate">
-            <div className="max-w-6xl mx-auto">
-                <div className="grid grid-cols-1 lg:grid-cols-[450px_1fr] gap-12 items-center">
+        <section id="booking" className="relative py-10 px-4 md:px-0 md:pt-30 pt-10 overflow-hidden bg-black isolate">
+            <div className="max-w-[1400px] mx-auto px-4 md:px-10">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                     
                     {/* Left Side: Editorial Content */}
                     <motion.div 
@@ -32,23 +43,21 @@ export default function Booking() {
                         transition={{ duration: 0.8 }}
                         className="space-y-8"
                     >
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
-                            <Sparkles className="w-4 h-4 text-[#0066FF]" />
-                            <span className="text-[10px] font-bold uppercase tracking-widest text-[#0066FF]">Limited Availability</span>
-                        </div>
+                       
 
-                        <div className="space-y-4">
-                            <h2 className="text-white text-5xl md:text-6xl font-bold leading-[1.1] tracking-tight">
-                                Let's build <br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] to-[#00A3FF]">something</span> <br />
-                                extraordinary.
+                        <div className="space-y-0">
+                            <h2 className="text-white text-[1.75rem] xs:text-[2rem] md:text-[3.2rem] leading-[1.1] font-medium tracking-[-1px]">
+                                Let's build
                             </h2>
-                            <p className="text-white/40 text-lg leading-relaxed max-w-md">
+                            <h3 className="font-serif italic text-[1.75rem] xs:text-[2rem] md:text-[3.2rem] leading-[1.1] font-medium tracking-[-1px] bg-gradient-to-r from-[#0066FF] to-white bg-clip-text text-transparent">
+                                something extraordinary
+                            </h3>
+                            <p className="text-white/40 text-lg leading-relaxed max-w-xl pt-4">
                                 Secure your strategy session with our lead consultant. 45 minutes of pure focus on your brand's growth.
                             </p>
                         </div>
 
-                        <div className="p-6 rounded-[32px] border border-white/5 bg-white/[0.02] backdrop-blur-sm space-y-6 relative z-10">
+                        <div className="p-6 rounded-[32px] border border-[#0066FF]/30 bg-white/[0.02] backdrop-blur-sm space-y-6 relative z-10 shadow-[0_0_30px_rgba(0,102,255,0.15)]">
                             <div className="flex items-center gap-4">
                                 <div className="relative w-14 h-14 rounded-2xl overflow-hidden border border-white/10 ring-4 ring-[#0066FF]/20">
                                     <Image 
@@ -85,7 +94,7 @@ export default function Booking() {
 
                         <div className="flex gap-4">
                             {[Mail, Phone, MessageSquare].map((Icon, i) => (
-                                <button key={i} className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-[#0066FF] hover:border-[#0066FF]/30 hover:bg-[#0066FF]/5 hover:-translate-y-1 transition-all duration-300">
+                                <button key={i} className="w-12 h-12 rounded-2xl bg-white/5 border border-[#0066FF]/20 flex items-center justify-center text-white/40 hover:text-[#0066FF] hover:border-[#0066FF]/50 hover:bg-[#0066FF]/10 hover:-translate-y-1 transition-all duration-300 shadow-[0_0_15px_rgba(0,102,255,0.05)] hover:shadow-[0_0_20px_rgba(0,102,255,0.2)]">
                                     <Icon size={20} />
                                 </button>
                             ))}
@@ -98,9 +107,18 @@ export default function Booking() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="relative p-1 rounded-[48px] bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-3xl overflow-hidden group shadow-2xl z-10"
+                        className="relative p-[1.5px] rounded-[48px] overflow-hidden group z-10"
+                        style={{
+                            boxShadow: "0 0 40px rgba(0,102,255,0.25), 0 0 80px rgba(0,102,255,0.15)"
+                        }}
                     >
-                        <div className="bg-neutral-950/80 rounded-[46px] p-8 md:p-10">
+                        {/* Static subtle border base */}
+                        <div className="absolute inset-0 bg-[#0066FF]/10 z-0" />
+
+                        {/* Border Animation Beam (Moving Trail) */}
+                        <div className="absolute inset-[-150%] z-0 bg-[conic-gradient(from_0deg_at_50%_50%,#0066ff00_0%,#0066ff00_50%,#0066FF_100%)] animate-[spin_6s_linear_infinite] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                        <div className="bg-[#0a0a0a] backdrop-blur-3xl rounded-[46.5px] p-8 md:p-10 relative z-10 h-full">
                             <AnimatePresence mode="wait">
                                 {step === 1 ? (
                                     <motion.div 
@@ -113,11 +131,11 @@ export default function Booking() {
                                         <div className="flex items-center justify-between">
                                             <div>
                                                 <h3 className="text-white text-2xl font-bold tracking-tight">Select Date</h3>
-                                                <p className="text-white/40 text-sm mt-1">July 2025</p>
+                                                <p className="text-white/40 text-sm mt-1">{viewDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</p>
                                             </div>
                                             <div className="flex gap-3">
-                                                <button className="w-10 h-10 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-all"><ChevronLeft size={20} /></button>
-                                                <button className="w-10 h-10 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-all"><ChevronRight size={20} /></button>
+                                                <button onClick={prevMonth} className="w-10 h-10 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-all"><ChevronLeft size={20} /></button>
+                                                <button onClick={nextMonth} className="w-10 h-10 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-all"><ChevronRight size={20} /></button>
                                             </div>
                                         </div>
 
@@ -127,10 +145,10 @@ export default function Booking() {
                                                 <div key={`${day}-${i}`} className="h-8 flex items-center justify-center text-[10px] font-bold text-white/20 uppercase tracking-widest">{day}</div>
                                             ))}
                                             
-                                            {Array.from({ length: 5 }, (_, i) => (
+                                            {Array.from({ length: startDay }, (_, i) => (
                                                 <div key={`empty-${i}`} className="h-10 md:h-12" />
                                             ))}
-                                            {DAYS.map((day) => (
+                                            {Array.from({ length: daysInMonth }, (_, i) => i + 1).map((day) => (
                                                 <button 
                                                     key={day}
                                                     onClick={() => setSelectedDate(day)}
@@ -149,9 +167,9 @@ export default function Booking() {
                                             ))}
                                         </div>
 
-                                        <div className="space-y-4">
-                                            <h4 className="text-white/60 text-xs font-bold uppercase tracking-widest px-1">Available Slots</h4>
-                                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                                        <div className="space-y-3">
+                                            <h4 className="text-white/60 text-[10px] font-bold uppercase tracking-widest px-1">Available Slots</h4>
+                                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                                                 {TIMES.map((time) => (
                                                     <button 
                                                         key={time}
@@ -159,7 +177,7 @@ export default function Booking() {
                                                         className={`py-3 rounded-2xl border flex items-center justify-center text-xs font-bold transition-all relative overflow-hidden ${
                                                             selectedTime === time 
                                                             ? "border-[#0066FF] text-white shadow-lg shadow-[#0066FF]/20" 
-                                                            : "bg-white/5 border-white/5 text-white/40 hover:border-white/20 hover:text-white"
+                                                            : "bg-white/5 border-[#0066FF]/10 text-white/40 hover:border-[#0066FF]/40 hover:text-white hover:shadow-[0_0_15px_rgba(0,102,255,0.1)]"
                                                         }`}
                                                     >
                                                         {selectedTime === time && (
@@ -207,7 +225,7 @@ export default function Booking() {
                                                     <input 
                                                         type="text" 
                                                         placeholder="John Doe" 
-                                                        className="w-full bg-white/5 border border-white/5 focus:border-[#0066FF]/50 focus:bg-white/10 rounded-2xl py-5 pl-14 pr-6 text-white text-sm outline-none transition-all placeholder:text-white/10"
+                                                        className="w-full bg-white/5 border border-[#0066FF]/10 focus:border-[#0066FF]/50 focus:bg-white/10 rounded-2xl py-5 pl-14 pr-6 text-white text-sm outline-none transition-all placeholder:text-white/10 focus:shadow-[0_0_20px_rgba(0,102,255,0.1)]"
                                                     />
                                                 </div>
                                             </div>
@@ -218,7 +236,7 @@ export default function Booking() {
                                                     <input 
                                                         type="email" 
                                                         placeholder="hello@company.com" 
-                                                        className="w-full bg-white/5 border border-white/5 focus:border-[#0066FF]/50 focus:bg-white/10 rounded-2xl py-5 pl-14 pr-6 text-white text-sm outline-none transition-all placeholder:text-white/10"
+                                                        className="w-full bg-white/5 border border-[#0066FF]/10 focus:border-[#0066FF]/50 focus:bg-white/10 rounded-2xl py-5 pl-14 pr-6 text-white text-sm outline-none transition-all placeholder:text-white/10 focus:shadow-[0_0_20px_rgba(0,102,255,0.1)]"
                                                     />
                                                 </div>
                                             </div>
@@ -229,7 +247,7 @@ export default function Booking() {
                                                     <input 
                                                         type="tel" 
                                                         placeholder="+1 (555) 000-0000" 
-                                                        className="w-full bg-white/5 border border-white/5 focus:border-[#0066FF]/50 focus:bg-white/10 rounded-2xl py-5 pl-14 pr-6 text-white text-sm outline-none transition-all placeholder:text-white/10"
+                                                        className="w-full bg-white/5 border border-[#0066FF]/10 focus:border-[#0066FF]/50 focus:bg-white/10 rounded-2xl py-5 pl-14 pr-6 text-white text-sm outline-none transition-all placeholder:text-white/10 focus:shadow-[0_0_20px_rgba(0,102,255,0.1)]"
                                                     />
                                                 </div>
                                             </div>

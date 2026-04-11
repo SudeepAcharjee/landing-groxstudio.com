@@ -20,7 +20,7 @@ export default function About() {
       id="about"
       ref={containerRef}
       style={{ position: "relative" }}
-      className="bg-black px-6 md:px-12 pt-20 flex flex-col items-center justify-center text-center overflow-hidden min-h-screen"
+      className="bg-black px-6 md:px-12 pt-20 flex flex-col items-center justify-center text-center overflow-hidden min-h-screen pb-30"
     >
       <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center gap-12 w-full">
 

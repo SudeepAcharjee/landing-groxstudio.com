@@ -107,7 +107,7 @@ export const StickyScroll = ({ content, containerClassName, header }: StickyScro
                         scale: activeCard === index ? 1 : 0.95,
                         filter: activeCard === index ? "blur(0px)" : "blur(4px)",
                       }}
-                      className="text-3xl md:text-5xl font-light tracking-tight text-white mb-4 md:mb-6"
+                      className="text-white text-[1.75rem] xs:text-[2rem] md:text-[2.875rem] leading-[34px] xs:leading-[40px] md:leading-[50px] font-medium tracking-[-1px] text-balance mb-4 md:mb-6"
                     >
                       {item.title}
                     </motion.h2>
@@ -148,7 +148,14 @@ export const StickyScroll = ({ content, containerClassName, header }: StickyScro
           </div>
 
           {/* Desktop Right Column: Content Gallery */}
-          <div className="hidden lg:block w-1/2 relative h-[55vh] rounded-[32px] overflow-hidden z-10">
+          <div
+            className="hidden lg:block w-1/2 relative h-[55vh] rounded-[32px] overflow-hidden z-10 lg:mt-30"
+            style={{
+              border: "1px solid rgba(0, 102, 255, 0.35)",
+              boxShadow:
+                "0 0 0 1px rgba(0,102,255,0.15), 0 0 30px 4px rgba(0,102,255,0.25), 0 0 80px 10px rgba(0,102,255,0.12)",
+            }}
+          >
             <AnimatePresence mode="popLayout">
               <motion.div
                 key={activeCard}
