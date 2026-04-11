@@ -59,7 +59,7 @@ export default function Services() {
         <section 
             id="services" 
             ref={containerRef} 
-            className="relative bg-black md:py-20 py-0 md:h-auto h-[150vh] overflow-visible"
+            className="relative bg-black md:py-20 py-0 md:h-auto h-[250vh] overflow-visible"
         >
             {/* Large Atmospheric Background Glows - Fixed relative to the viewport during scroll */}
             <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">

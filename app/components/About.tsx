@@ -35,7 +35,7 @@ export default function About() {
             Scale Your Brand Impact
           </h2>
           
-          <p className="text-[1rem] md:text-[1.125rem] text-[#A3A3A3] tracking-[-1px] max-w-xl leading-relaxed mt-6">
+          <p className="text-[1rem] md:text-[1.125rem] text-white/70 tracking-[-1px] max-w-xl leading-relaxed mt-6">
             Partner with us to amplify your brand presence with Grox Studio.
           </p>
         </motion.div>
@@ -62,6 +62,7 @@ export default function About() {
                 src="/images/abg.png"
                 alt="About background"
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                 className="object-contain"
                 priority
               />

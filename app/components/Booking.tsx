@@ -52,7 +52,7 @@ export default function Booking() {
                             <h3 className="font-serif italic text-[1.75rem] xs:text-[2rem] md:text-[3.2rem] leading-[1.1] font-medium tracking-[-1px] bg-gradient-to-r from-[#0066FF] to-white bg-clip-text text-transparent">
                                 something extraordinary
                             </h3>
-                            <p className="text-white/40 text-lg leading-relaxed max-w-xl pt-4">
+                            <p className="text-white/60 text-lg leading-relaxed max-w-xl pt-4">
                                 Secure your strategy session with our lead consultant. 45 minutes of pure focus on your brand's growth.
                             </p>
                         </div>
@@ -70,7 +70,7 @@ export default function Booking() {
                                 </div>
                                 <div>
                                     <h4 className="text-white font-bold text-lg">Lillyen White</h4>
-                                    <p className="text-white/40 text-sm">Head of Strategy</p>
+                                    <p className="text-white/60 text-sm">Head of Strategy</p>
                                 </div>
                             </div>
 
@@ -94,7 +94,11 @@ export default function Booking() {
 
                         <div className="flex gap-4">
                             {[Mail, Phone, MessageSquare].map((Icon, i) => (
-                                <button key={i} className="w-12 h-12 rounded-2xl bg-white/5 border border-[#0066FF]/20 flex items-center justify-center text-white/40 hover:text-[#0066FF] hover:border-[#0066FF]/50 hover:bg-[#0066FF]/10 hover:-translate-y-1 transition-all duration-300 shadow-[0_0_15px_rgba(0,102,255,0.05)] hover:shadow-[0_0_20px_rgba(0,102,255,0.2)]">
+                                <button 
+                                    key={i} 
+                                    aria-label={["Email", "Phone", "Message"][i]}
+                                    className="w-12 h-12 rounded-2xl bg-white/5 border border-[#0066FF]/20 flex items-center justify-center text-white/60 hover:text-[#0066FF] hover:border-[#0066FF]/50 hover:bg-[#0066FF]/10 hover:-translate-y-1 transition-all duration-300 shadow-[0_0_15px_rgba(0,102,255,0.05)] hover:shadow-[0_0_20px_rgba(0,102,255,0.2)]"
+                                >
                                     <Icon size={20} />
                                 </button>
                             ))}
@@ -131,11 +135,11 @@ export default function Booking() {
                                         <div className="flex items-center justify-between">
                                             <div>
                                                 <h3 className="text-white text-2xl font-bold tracking-tight">Select Date</h3>
-                                                <p className="text-white/40 text-sm mt-1">{viewDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</p>
+                                                <p className="text-white/60 text-sm mt-1">{viewDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</p>
                                             </div>
                                             <div className="flex gap-3">
-                                                <button onClick={prevMonth} className="w-10 h-10 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-all"><ChevronLeft size={20} /></button>
-                                                <button onClick={nextMonth} className="w-10 h-10 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-all"><ChevronRight size={20} /></button>
+                                                <button onClick={prevMonth} aria-label="Previous Month" className="w-10 h-10 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-all"><ChevronLeft size={20} /></button>
+                                                <button onClick={nextMonth} aria-label="Next Month" className="w-10 h-10 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-all"><ChevronRight size={20} /></button>
                                             </div>
                                         </div>
 
@@ -155,7 +159,7 @@ export default function Booking() {
                                                     className={`h-10 md:h-12 rounded-2xl flex items-center justify-center text-sm font-bold transition-all relative overflow-hidden group/day ${
                                                         selectedDate === day 
                                                         ? "text-white shadow-xl" 
-                                                        : "text-white/40 hover:text-white"
+                                                        : "text-white/60 hover:text-white"
                                                     }`}
                                                 >
                                                     {selectedDate === day && (
@@ -177,7 +181,7 @@ export default function Booking() {
                                                         className={`flex-shrink-0 min-w-[80px] sm:min-w-0 py-3 rounded-2xl border flex items-center justify-center text-xs font-bold transition-all relative overflow-hidden ${
                                                             selectedTime === time 
                                                             ? "border-[#0066FF] text-white shadow-lg shadow-[#0066FF]/20" 
-                                                            : "bg-white/5 border-[#0066FF]/10 text-white/40 hover:border-[#0066FF]/40 hover:text-white hover:shadow-[0_0_15px_rgba(0,102,255,0.1)]"
+                                                            : "bg-white/5 border-[#0066FF]/10 text-white/60 hover:border-[#0066FF]/40 hover:text-white hover:shadow-[0_0_15px_rgba(0,102,255,0.1)]"
                                                         }`}
                                                     >
                                                         {selectedTime === time && (
@@ -207,19 +211,19 @@ export default function Booking() {
                                         exit={{ opacity: 0, x: -20 }}
                                         className="space-y-8"
                                     >
-                                        <button onClick={() => setStep(1)} className="inline-flex items-center gap-2 text-white/40 hover:text-white font-bold text-xs uppercase tracking-widest transition-colors group">
+                                        <button onClick={() => setStep(1)} className="inline-flex items-center gap-2 text-white/60 hover:text-white font-bold text-xs uppercase tracking-widest transition-colors group">
                                             <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
                                             Back to Calendar
                                         </button>
                                         
                                         <div className="space-y-2">
                                             <h3 className="text-white text-3xl font-bold tracking-tight">Final Details</h3>
-                                            <p className="text-white/40 text-sm">Please tell us a bit about yourself.</p>
+                                            <p className="text-white/60 text-sm">Please tell us a bit about yourself.</p>
                                         </div>
                                         
                                         <div className="space-y-5">
                                             <div className="space-y-2 group">
-                                                <label className="text-white/40 text-[10px] uppercase font-black tracking-[0.2em] px-1 group-focus-within:text-[#0066FF] transition-colors">Full Name</label>
+                                                <label className="text-white/60 text-[10px] uppercase font-black tracking-[0.2em] px-1 group-focus-within:text-[#0066FF] transition-colors">Full Name</label>
                                                 <div className="relative">
                                                     <User className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-white/20 group-focus-within:text-[#0066FF] transition-colors" />
                                                     <input 
@@ -230,7 +234,7 @@ export default function Booking() {
                                                 </div>
                                             </div>
                                             <div className="space-y-2 group">
-                                                <label className="text-white/40 text-[10px] uppercase font-black tracking-[0.2em] px-1 group-focus-within:text-[#0066FF] transition-colors">Email Address</label>
+                                                <label className="text-white/60 text-[10px] uppercase font-black tracking-[0.2em] px-1 group-focus-within:text-[#0066FF] transition-colors">Email Address</label>
                                                 <div className="relative">
                                                     <Mail className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-white/20 group-focus-within:text-[#0066FF] transition-colors" />
                                                     <input 
@@ -241,7 +245,7 @@ export default function Booking() {
                                                 </div>
                                             </div>
                                             <div className="space-y-2 group">
-                                                <label className="text-white/40 text-[10px] uppercase font-black tracking-[0.2em] px-1 group-focus-within:text-[#0066FF] transition-colors">Phone Number</label>
+                                                <label className="text-white/60 text-[10px] uppercase font-black tracking-[0.2em] px-1 group-focus-within:text-[#0066FF] transition-colors">Phone Number</label>
                                                 <div className="relative">
                                                     <Phone className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-white/20 group-focus-within:text-[#0066FF] transition-colors" />
                                                     <input 

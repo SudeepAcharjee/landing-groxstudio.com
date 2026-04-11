@@ -16,14 +16,34 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "GroxStudio",
-  description: "A Creative and Innovative Agency",
+  title: "GroxStudio | Software Development, Branding & Design Agency",
+  description: "GroxStudio is a creative agency specializing in digital transformation, high-end branding, and innovative design solutions for ambitious brands.",
+  keywords: ["digital agency", "branding", "web design", "marketing strategy", "GroxStudio"],
+  authors: [{ name: "GroxStudio Team" }],
+  openGraph: {
+    title: "GroxStudio | Software Development, Branding & Design Agency",
+    description: "Transforming Ideas into Reality - Crafting the Digital Future, One Design at a Time.",
+    url: "https://groxstudio.com",
+    siteName: "GroxStudio",
+    locale: "en_US",
+    type: "website",
+    images: ["/images/abg.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "GroxStudio | Software Development, Branding & Design Agency",
+    description: "GroxStudio is a creative agency specializing in digital transformation.",
+    images: ["/images/abg.png"],
+  },
   icons: {
     icon: "/logos/icon.png",
     shortcut: "/logos/icon.png",
     apple: "/logos/icon.png",
   },
 };
+
+import WhatsAppButton from "./components/WhatsAppButton";
+import SmoothScroll from "./components/SmoothScroll";
 
 export default function RootLayout({
   children,
@@ -46,6 +66,8 @@ export default function RootLayout({
           `}
         </Script>
         {children}
+        <WhatsAppButton />
+        <SmoothScroll />
       </body>
     </html>
   );

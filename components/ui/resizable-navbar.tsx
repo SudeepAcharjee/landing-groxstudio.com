@@ -305,14 +305,20 @@ export const MobileNavMenu = ({
 export const MobileNavToggle = ({
   isOpen,
   onClick,
+  "aria-label": ariaLabel,
 }: {
   isOpen: boolean;
   onClick: () => void;
+  "aria-label"?: string;
 }) => {
-  return isOpen ? (
-    <IconX className="text-white" onClick={onClick} />
-  ) : (
-    <IconMenu2 className="text-white" onClick={onClick} />
+  return (
+    <button 
+      onClick={onClick} 
+      className="p-2 -mr-2 text-white focus:outline-none"
+      aria-label={ariaLabel || (isOpen ? "Close menu" : "Open menu")}
+    >
+      {isOpen ? <IconX /> : <IconMenu2 />}
+    </button>
   );
 };
 

@@ -5,6 +5,7 @@ import { CanvasText } from "@/components/ui/canvas-text";
 import { ArrowUpRight, ChevronsRight } from "lucide-react";
 import { motion, useMotionValue, useSpring, useTransform, useScroll } from "framer-motion";
 import { Noto_Sans } from "next/font/google";
+import Image from "next/image";
 import Link from "next/link";
 
 const notoSans = Noto_Sans({
@@ -61,11 +62,17 @@ export default function Hero() {
             onMouseLeave={handleMouseLeave}
             className="relative md:min-h-[100vh] min-h-[80vh] flex flex-col items-center justify-center bg-[#0a0a0a] overflow-hidden px-4 pt-20"
         >
-            {/* Background Image */}
-            <div 
-                className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-50 pointer-events-none" 
-                style={{ backgroundImage: "url('/images/fbg.png')" }}
-            />
+            {/* Background Image Optimized */}
+            <div className="absolute inset-0 z-0 opacity-50 pointer-events-none">
+                <Image
+                    src="/images/fbg.png"
+                    alt="Atmospheric Background"
+                    fill
+                    priority
+                    sizes="100vw"
+                    className="object-cover"
+                />
+            </div>
 
             <div className="relative z-10 w-full max-w-4xl">
                 {/* Bounding Box Design */}
@@ -193,7 +200,7 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                        className="mt-12 text-[#999] text-[11px] md:text-sm uppercase tracking-[0.2em] font-medium text-center space-y-1 max-w-lg md:max-w-2xl px-4 select-none"
+                        className="mt-12 text-[#ccc] text-[11px] md:text-sm uppercase tracking-[0.2em] font-medium text-center space-y-1 max-w-lg md:max-w-2xl px-4 select-none"
                     >
                         <p>Transforming Ideas into Reality Crafting the Digital Future, One Design at a Time</p>
                     </motion.div>

@@ -40,7 +40,7 @@ const notoSans = Noto_Sans({
    ✅ FIXED LOGO COMPONENT
    ========================= */
 const CustomLogo = () => (
-  <Link href="/" className="flex items-center gap-2 group">
+  <Link href="/" className="flex items-center gap-2 group" aria-label="GroxStudio Home">
     <Image
       src="/logos/navlogo.png"
       alt="Grovio Logo"
@@ -55,9 +55,9 @@ const CustomLogo = () => (
 
 export default function Navbar() {
   const navItems: NavItem[] = [
-    { name: "About Us", link: "/about" },
-    { name: "Services", link: "/our-services" },
-    { name: "Our Works", link: "/our-works" },
+    { name: "About Us", link: "#about" },
+    { name: "Services", link: "#services" },
+    { name: "Our Works", link: "#our-works" },
     { name: "Testimonials", link: "#testimonials" },
   ];
 
@@ -133,6 +133,7 @@ export default function Navbar() {
             <MobileNavToggle
               isOpen={isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             />
           </MobileNavHeader>
 
