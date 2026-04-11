@@ -80,6 +80,7 @@ export const StickyScroll = ({ content, containerClassName, header }: StickyScro
                   fill
                   sizes="(max-width: 1023px) calc(100vw - 48px), 50vw"
                   className="object-cover"
+                  quality={60}
                   priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -171,6 +172,7 @@ export const StickyScroll = ({ content, containerClassName, header }: StickyScro
                   fill
                   sizes="50vw"
                   className="object-cover"
+                  quality={60}
                   priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />

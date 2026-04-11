@@ -62,8 +62,8 @@ export default function BrandLogos() {
                       alt="Brand Logo"
                       width={160}
                       height={64}
-                      loading="eager"
-                      className="max-h-full max-w-full object-contain"
+                      quality={50}
+                      className="max-h-full max-w-full object-contain grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
                     />
                   </div>
                 ))}

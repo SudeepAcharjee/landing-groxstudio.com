@@ -63,6 +63,7 @@ export default function About() {
                 alt="About background"
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                quality={70}
                 className="object-contain"
                 priority
               />
