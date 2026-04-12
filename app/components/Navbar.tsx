@@ -44,10 +44,10 @@ const CustomLogo = () => (
     <Image
       src="/logos/navlogo.png"
       alt="Grovio Logo"
-      width={0}
-      height={0}
-      sizes="100vw"
-      className="w-[65px] h-auto object-contain brightness-0 invert"
+      width={65}
+      height={30}
+      className="brightness-0 invert"
+      style={{ width: "65px", height: "auto", objectFit: "contain" }}
       priority
     />
   </Link>

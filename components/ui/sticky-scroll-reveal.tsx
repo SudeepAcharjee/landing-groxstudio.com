@@ -74,15 +74,17 @@ export const StickyScroll = ({ content, containerClassName, header }: StickyScro
                 transition={{ duration: 0.6 }}
                 className="absolute inset-0"
               >
-                <Image
-                  src={content[activeCard].image}
-                  alt={content[activeCard].title}
-                  fill
-                  sizes="(max-width: 1023px) calc(100vw - 48px), 50vw"
-                  className="object-cover"
-                  quality={60}
-                  priority
-                />
+                <div className="relative w-full h-full" style={{ position: "relative" }}>
+                  <Image
+                    src={content[activeCard].image}
+                    alt={content[activeCard].title}
+                    fill
+                    sizes="(max-width: 1023px) calc(100vw - 48px), 50vw"
+                    className="object-cover"
+                    quality={60}
+                    priority
+                  />
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               </motion.div>
             </AnimatePresence>
@@ -166,15 +168,17 @@ export const StickyScroll = ({ content, containerClassName, header }: StickyScro
                 transition={{ duration: 0.6, ease: [0.19, 1, 0.22, 1] }}
                 className="absolute inset-0"
               >
-                <Image
-                  src={content[activeCard].image}
-                  alt={content[activeCard].title}
-                  fill
-                  sizes="50vw"
-                  className="object-cover"
-                  quality={60}
-                  priority
-                />
+                <div className="relative w-full h-full" style={{ position: "relative" }}>
+                  <Image
+                    src={content[activeCard].image}
+                    alt={content[activeCard].title}
+                    fill
+                    sizes="50vw"
+                    className="object-cover"
+                    quality={60}
+                    priority
+                  />
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
               </motion.div>
             </AnimatePresence>

@@ -57,7 +57,7 @@ export default function About() {
             <div className="absolute inset-[-100%] z-0 bg-[conic-gradient(from_0deg_at_50%_50%,#0066ff00_0%,#0066ff00_50%,#0066FF_100%)] animate-[spin_6s_linear_infinite]" />
             
             {/* Image Container */}
-            <div className="w-full h-full rounded-[30.5px] md:rounded-[46.5px] overflow-hidden relative z-10">
+            <div className="w-full h-full rounded-[30.5px] md:rounded-[46.5px] overflow-hidden relative z-10" style={{ position: "relative" }}>
               <Image
                 src="/images/abg.png"
                 alt="About background"

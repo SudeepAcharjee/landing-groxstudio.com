@@ -16,6 +16,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://groxstudio.com"),
   title: "GroxStudio | Software Development, Branding & Design Agency",
   description: "GroxStudio is a creative agency specializing in digital transformation, high-end branding, and innovative design solutions for ambitious brands.",
   keywords: ["digital agency", "branding", "web design", "marketing strategy", "GroxStudio"],
@@ -53,9 +54,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${poppins.variable} ${playfair.variable} h-full antialiased overflow-x-clip`}
+      className={`${poppins.variable} ${playfair.variable} antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans overflow-x-clip">
+      <body className="font-sans overflow-x-hidden">
         <Script id="microsoft-clarity" strategy="afterInteractive">
           {`
             (function(c,l,a,r,i,t,y){

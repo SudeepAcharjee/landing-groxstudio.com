@@ -44,9 +44,9 @@ export default function FooterSection() {
 
   return (
     <footer
-      className={`relative pt-10 md:pt-20 pb-0 z-50 overflow-hidden ${poppins.className} bg-black text-white`}
+      className={`relative pt-10 md:pt-20 pb-0 z-50 ${poppins.className} bg-black text-white`}
     >
-      <div className="absolute inset-0 z-0 select-none pointer-events-none">
+      <div className="absolute inset-0 z-0 select-none pointer-events-none" style={{ position: "absolute" }}>
         <Image 
           src="/images/fbg.png"
           alt="Footer Background"
@@ -88,7 +88,8 @@ export default function FooterSection() {
                   alt="Grovio Logo"
                   width={110}
                   height={24}
-                  className="object-contain brightness-0"
+                  className="brightness-0"
+                  style={{ width: "110px", height: "auto", objectFit: "contain" }}
                 />
               </div>
 

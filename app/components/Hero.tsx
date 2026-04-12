@@ -63,7 +63,7 @@ export default function Hero() {
             className="relative md:min-h-[100vh] min-h-[80vh] flex flex-col items-center justify-center bg-[#0a0a0a] overflow-hidden px-4 pt-20"
         >
             {/* Background Image Optimized */}
-            <div className="absolute inset-0 z-0 opacity-50 pointer-events-none">
+            <div className="absolute inset-0 z-0 opacity-50 pointer-events-none" style={{ position: "absolute" }}>
                 <Image
                     src="/images/fbg.png"
                     alt="Atmospheric Background"

@@ -11,6 +11,9 @@ export default function SmoothScroll() {
         duration: 1.2,
         easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
+        wheelMultiplier: 1,
+        touchMultiplier: 2,
+        infinite: false,
       });
 
       function raf(time: number) {
@@ -18,6 +21,20 @@ export default function SmoothScroll() {
         requestAnimationFrame(raf);
       }
       requestAnimationFrame(raf);
+
+      // Periodically update lenis to ensure it catches any height changes from dynamic content
+      const interval = setInterval(() => {
+        lenis.emit();
+      }, 1000);
+
+      window.addEventListener('resize', () => {
+        lenis.resize();
+      });
+
+      return () => {
+        clearInterval(interval);
+        lenis.destroy();
+      };
     };
 
     // @ts-ignore
