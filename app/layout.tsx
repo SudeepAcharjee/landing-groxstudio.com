@@ -28,18 +28,11 @@ export const metadata: Metadata = {
     siteName: "GroxStudio",
     locale: "en_US",
     type: "website",
-    images: ["/images/abg.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "GroxStudio | Software Development, Branding & Design Agency",
     description: "GroxStudio is a creative agency specializing in digital transformation.",
-    images: ["/images/abg.png"],
-  },
-  icons: {
-    icon: "/logos/icon.png",
-    shortcut: "/logos/icon.png",
-    apple: "/logos/icon.png",
   },
 };
 

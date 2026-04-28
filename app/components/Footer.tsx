@@ -24,10 +24,10 @@ const playfair = Playfair_Display({
 });
 
 const NAV_LINKS = [
-  { label: "Our Work", href: "/our-works" },
-  { label: "Our Services", href: "/our-services" },
-  { label: "About Us", href: "/about" },
-  { label: "Contact", href: "/contact-us" },
+  { label: "About Us", href: "#about" },
+  { label: "Services", href: "#services" },
+  { label: "Our Works", href: "#our-works" },
+  { label: "Testimonials", href: "#testimonials" },
 ];
 
 export default function FooterSection() {
@@ -131,7 +131,7 @@ export default function FooterSection() {
                 href={item.href}
                 className="group border-b border-gray-100 py-3 flex items-center justify-between cursor-pointer"
               >
-                <span className={`relative flex overflow-hidden text-2xl md:text-3xl font-medium text-[#111] ${josefin.className}`}>
+                <span className={`relative flex overflow-hidden text-2xl md:text-3xl font-medium text-[#111] ${poppins.className}`}>
                   {item.label}
                 </span>
                 <span className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center transition-all duration-300 group-hover:bg-[#0066FF] group-hover:border-[#0066FF] group-hover:text-white group-hover:rotate-45">

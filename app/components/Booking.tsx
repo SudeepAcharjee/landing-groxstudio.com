@@ -2,9 +2,16 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Clock, Globe, Mail, Phone, ChevronLeft, ChevronRight, User, MessageSquare, ArrowRight, Sparkles } from "lucide-react";
+import { Clock, Globe, Mail, Phone, ChevronLeft, ChevronRight, User, ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
+import { IconBrandWhatsapp } from "@tabler/icons-react";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
-const TIMES = ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"];
+const TIMES = Array.from({ length: 48 }, (_, i) => {
+    const hour = Math.floor(i / 2).toString().padStart(2, '0');
+    const minute = i % 2 === 0 ? "00" : "30";
+    return `${hour}:${minute}`;
+});
 
 export default function Booking() {
     const [mounted, setMounted] = useState(false);
@@ -12,6 +19,34 @@ export default function Booking() {
     const [selectedDate, setSelectedDate] = useState(28);
     const [selectedTime, setSelectedTime] = useState("");
     const [viewDate, setViewDate] = useState(new Date(2025, 6, 1)); // Default to July 2025
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
+
+    const handleBooking = async () => {
+        if (!name || !email || !phone || !selectedDate || !selectedTime) return;
+        setIsSubmitting(true);
+        try {
+            const bookingDate = new Date(viewDate.getFullYear(), viewDate.getMonth(), selectedDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            await addDoc(collection(db, "bookings"), {
+                name,
+                email,
+                phone,
+                date: bookingDate,
+                time: selectedTime,
+                status: "pending",
+                createdAt: serverTimestamp()
+            });
+            setIsSuccess(true);
+        } catch (err) {
+            console.error("Booking error:", err);
+            alert("Failed to confirm booking. Please try again.");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     const nextMonth = () => {
         setViewDate(new Date(viewDate.getFullYear(), viewDate.getMonth() + 1, 1));
@@ -47,13 +82,13 @@ export default function Booking() {
 
                         <div className="space-y-0">
                             <h2 className="text-white text-[1.75rem] xs:text-[2rem] md:text-[3.2rem] leading-[1.1] font-medium tracking-[-1px]">
-                                Let's build
+                                Let's Talk 
                             </h2>
                             <h3 className="font-serif italic text-[1.75rem] xs:text-[2rem] md:text-[3.2rem] leading-[1.1] font-medium tracking-[-1px] bg-gradient-to-r from-[#0066FF] to-white bg-clip-text text-transparent">
-                                something extraordinary
+                                About Your Business, 30 minutes.
                             </h3>
                             <p className="text-white/60 text-lg leading-relaxed max-w-xl pt-4">
-                                Secure your strategy session with our lead consultant. 45 minutes of pure focus on your brand's growth.
+                                Hop on a 30-minute call with our founder to share your vision, challenges, and goals. No pitches. No pressure. Just a real conversation to see if we’re the right fit to help you grow.
                             </p>
                         </div>
 
@@ -61,7 +96,7 @@ export default function Booking() {
                             <div className="flex items-center gap-4">
                                 <div className="relative w-14 h-14 rounded-2xl overflow-hidden border border-white/10 ring-4 ring-[#0066FF]/20">
                                     <Image 
-                                        src="/images/lillyen.png" 
+                                        src="/images/PP.png" 
                                         alt="Lillyen White" 
                                         fill 
                                         sizes="56px"
@@ -69,8 +104,8 @@ export default function Booking() {
                                     />
                                 </div>
                                 <div>
-                                    <h4 className="text-white font-bold text-lg">Lillyen White</h4>
-                                    <p className="text-white/60 text-sm">Head of Strategy</p>
+                                    <h4 className="text-white font-bold text-lg">Rahul Deka</h4>
+                                    <p className="text-white/60 text-sm">Co-Founder, Groxstudio</p>
                                 </div>
                             </div>
 
@@ -81,7 +116,7 @@ export default function Booking() {
                                     <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#0066FF]/10 group-hover:text-[#0066FF] transition-all">
                                         <Clock className="w-5 h-5" />
                                     </div>
-                                    <span className="text-sm font-medium">Mon-Fri <b className="text-white ml-2">9:00 - 17:00 EST</b></span>
+                                    <span className="text-sm font-medium">IST <b className="text-white ml-2">24/7</b></span>
                                 </div>
                                 <div className="flex items-center gap-4 text-white/60 group">
                                     <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#0066FF]/10 group-hover:text-[#0066FF] transition-all">
@@ -93,15 +128,29 @@ export default function Booking() {
                         </div>
 
                         <div className="flex gap-4">
-                            {[Mail, Phone, MessageSquare].map((Icon, i) => (
-                                <button 
-                                    key={i} 
-                                    aria-label={["Email", "Phone", "Message"][i]}
-                                    className="w-12 h-12 rounded-2xl bg-white/5 border border-[#0066FF]/20 flex items-center justify-center text-white/60 hover:text-[#0066FF] hover:border-[#0066FF]/50 hover:bg-[#0066FF]/10 hover:-translate-y-1 transition-all duration-300 shadow-[0_0_15px_rgba(0,102,255,0.05)] hover:shadow-[0_0_20px_rgba(0,102,255,0.2)]"
-                                >
-                                    <Icon size={20} />
-                                </button>
-                            ))}
+                            <a 
+                                href="mailto:info@groxstudio.com"
+                                aria-label="Email"
+                                className="w-12 h-12 rounded-2xl bg-white/5 border border-[#0066FF]/20 flex items-center justify-center text-white/60 hover:text-[#0066FF] hover:border-[#0066FF]/50 hover:bg-[#0066FF]/10 hover:-translate-y-1 transition-all duration-300 shadow-[0_0_15px_rgba(0,102,255,0.05)] hover:shadow-[0_0_20px_rgba(0,102,255,0.2)]"
+                            >
+                                <Mail size={20} />
+                            </a>
+                            <a 
+                                href="tel:+917086745746"
+                                aria-label="Phone"
+                                className="w-12 h-12 rounded-2xl bg-white/5 border border-[#0066FF]/20 flex items-center justify-center text-white/60 hover:text-[#0066FF] hover:border-[#0066FF]/50 hover:bg-[#0066FF]/10 hover:-translate-y-1 transition-all duration-300 shadow-[0_0_15px_rgba(0,102,255,0.05)] hover:shadow-[0_0_20px_rgba(0,102,255,0.2)]"
+                            >
+                                <Phone size={20} />
+                            </a>
+                            <a 
+                                href="https://wa.me/917086745746"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="WhatsApp"
+                                className="w-12 h-12 rounded-2xl bg-white/5 border border-[#0066FF]/20 flex items-center justify-center text-white/60 hover:text-[#0066FF] hover:border-[#0066FF]/50 hover:bg-[#0066FF]/10 hover:-translate-y-1 transition-all duration-300 shadow-[0_0_15px_rgba(0,102,255,0.05)] hover:shadow-[0_0_20px_rgba(0,102,255,0.2)]"
+                            >
+                                <IconBrandWhatsapp size={20} />
+                            </a>
                         </div>
                     </motion.div>
 
@@ -171,22 +220,36 @@ export default function Booking() {
                                             ))}
                                         </div>
 
-                                        <div className="space-y-3">
-                                            <h4 className="text-white/60 text-[10px] font-bold uppercase tracking-widest px-1">Available Slots</h4>
-                                            <div className="flex overflow-x-auto sm:grid sm:grid-cols-4 gap-2 pb-2 scrollbar-hide">
+                                         <div className="space-y-3">
+                                            <style>{`
+                                                .custom-scrollbar::-webkit-scrollbar {
+                                                    height: 4px;
+                                                }
+                                                .custom-scrollbar::-webkit-scrollbar-track {
+                                                    background: rgba(255, 255, 255, 0.05);
+                                                    border-radius: 10px;
+                                                }
+                                                .custom-scrollbar::-webkit-scrollbar-thumb {
+                                                    background: rgba(0, 102, 255, 0.3);
+                                                    border-radius: 10px;
+                                                }
+                                                .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+                                                    background: rgba(0, 102, 255, 0.6);
+                                                }
+                                            `}</style>
+                                            <div 
+                                                className="flex overflow-x-auto gap-3 pb-4 select-none flex-nowrap snap-x snap-mandatory custom-scrollbar"
+                                            >
                                                 {TIMES.map((time) => (
                                                     <button 
                                                         key={time}
                                                         onClick={() => setSelectedTime(time)}
-                                                        className={`flex-shrink-0 min-w-[80px] sm:min-w-0 py-3 rounded-2xl border flex items-center justify-center text-xs font-bold transition-all relative overflow-hidden ${
+                                                        className={`flex-shrink-0 min-w-[85px] md:min-w-[95px] py-3 md:py-4 rounded-2xl border flex items-center justify-center text-xs md:text-sm font-bold transition-all relative overflow-hidden snap-center ${
                                                             selectedTime === time 
-                                                            ? "border-[#0066FF] text-white shadow-lg shadow-[#0066FF]/20" 
-                                                            : "bg-white/5 border-[#0066FF]/10 text-white/60 hover:border-[#0066FF]/40 hover:text-white hover:shadow-[0_0_15px_rgba(0,102,255,0.1)]"
+                                                            ? "border-[#0066FF] text-white shadow-lg shadow-[#0066FF]/20 bg-[#0066FF]/20" 
+                                                            : "bg-white/5 border-white/5 text-white/60 hover:border-[#0066FF]/40 hover:text-white"
                                                         }`}
                                                     >
-                                                        {selectedTime === time && (
-                                                            <motion.div layoutId="activeTime" className="absolute inset-0 bg-[#0066FF]/10 -z-10" />
-                                                        )}
                                                         {time}
                                                     </button>
                                                 ))}
@@ -229,6 +292,8 @@ export default function Booking() {
                                                     <input 
                                                         type="text" 
                                                         placeholder="John Doe" 
+                                                        value={name}
+                                                        onChange={(e) => setName(e.target.value)}
                                                         className="w-full bg-white/5 border border-[#0066FF]/10 focus:border-[#0066FF]/50 focus:bg-white/10 rounded-2xl py-5 pl-14 pr-6 text-white text-sm outline-none transition-all placeholder:text-white/10 focus:shadow-[0_0_20px_rgba(0,102,255,0.1)]"
                                                     />
                                                 </div>
@@ -240,6 +305,8 @@ export default function Booking() {
                                                     <input 
                                                         type="email" 
                                                         placeholder="hello@company.com" 
+                                                        value={email}
+                                                        onChange={(e) => setEmail(e.target.value)}
                                                         className="w-full bg-white/5 border border-[#0066FF]/10 focus:border-[#0066FF]/50 focus:bg-white/10 rounded-2xl py-5 pl-14 pr-6 text-white text-sm outline-none transition-all placeholder:text-white/10 focus:shadow-[0_0_20px_rgba(0,102,255,0.1)]"
                                                     />
                                                 </div>
@@ -251,16 +318,34 @@ export default function Booking() {
                                                     <input 
                                                         type="tel" 
                                                         placeholder="+1 (555) 000-0000" 
+                                                        value={phone}
+                                                        onChange={(e) => setPhone(e.target.value)}
                                                         className="w-full bg-white/5 border border-[#0066FF]/10 focus:border-[#0066FF]/50 focus:bg-white/10 rounded-2xl py-5 pl-14 pr-6 text-white text-sm outline-none transition-all placeholder:text-white/10 focus:shadow-[0_0_20px_rgba(0,102,255,0.1)]"
                                                     />
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <button className="w-full h-16 rounded-3xl bg-[#0066FF] text-white font-extrabold text-sm uppercase tracking-wider hover:bg-[#0055DD] hover:scale-[1.02] active:scale-[0.98] transition-all duration-500 shadow-2xl shadow-[#0066FF]/20 mt-4">
-                                            Confirm Appointment
+                                        <button 
+                                            onClick={handleBooking}
+                                            disabled={isSubmitting || !name || !email || !phone}
+                                            className="w-full h-16 rounded-3xl bg-[#0066FF] disabled:opacity-50 text-white font-extrabold text-sm uppercase tracking-wider hover:bg-[#0055DD] hover:scale-[1.02] active:scale-[0.98] transition-all duration-500 shadow-2xl shadow-[#0066FF]/20 mt-4 flex items-center justify-center"
+                                        >
+                                            {isSubmitting ? "Confirming..." : "Confirm Appointment"}
                                         </button>
                                     </motion.div>
+                                )}
+                                {isSuccess && step === 2 && (
+                                    <div className="absolute inset-0 bg-[#0a0a0a] z-50 flex flex-col items-center justify-center rounded-[46.5px] p-8 text-center">
+                                        <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mb-6">
+                                            <CheckCircle2 className="w-10 h-10 text-green-500" />
+                                        </div>
+                                        <h3 className="text-2xl font-bold text-white mb-2">Booking Confirmed!</h3>
+                                        <p className="text-white/60 mb-6">We'll reach out to you to confirm your {selectedTime} slot.</p>
+                                        <button onClick={() => {setIsSuccess(false); setStep(1); setName(""); setEmail(""); setPhone("");}} className="text-[#0066FF] hover:underline font-bold text-sm uppercase tracking-wider">
+                                            Book Another
+                                        </button>
+                                    </div>
                                 )}
                             </AnimatePresence>
                         </div>

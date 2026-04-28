@@ -35,7 +35,7 @@ export default function BrandLogos() {
     <section className={`relative bg-black pt-10 md:pt-20 pb-10 md:pb-20 overflow-hidden ${poppins.className}`}>
       <div className="relative z-10 max-w-screen-2xl mx-auto">
         <h2 className="text-center text-xl md:text-3xl mb-8 md:mb-8 tracking-tight px-4 text-white">
-          Trusted By
+          Trusted by 20+ agencies, businesses, and founders worldwide.
         </h2>
 
         {/* Unified Infinite horizontal scroll for all screens */}
@@ -63,7 +63,7 @@ export default function BrandLogos() {
                       width={160}
                       height={64}
                       quality={50}
-                      className="max-h-full max-w-full object-contain grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
+                      className="max-h-full max-w-full object-contain"
                     />
                   </div>
                 ))}

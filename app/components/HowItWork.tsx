@@ -5,10 +5,10 @@ import { Search, PenTool, Rocket, BarChart3 } from "lucide-react";
 
 const HeroSection: React.FC = () => {
   const mobileCards = [
-    { title: "Discover", desc: "We analyze your current workflows and pain points.", icon: Search },
-    { title: "Design", desc: "Build a tailored AI automation blueprint for your business.", icon: PenTool },
-    { title: "Deploy", desc: "Implement and integrate solutions with minimal disruption.", icon: Rocket },
-    { title: "Scale", desc: "Monitor, optimize, and expand automation as you grow.", icon: BarChart3 },
+    { title: "Idea", desc: "We refine your idea and build a strategic roadmap for success.", icon: Search },
+    { title: "Build", desc: "We design and develop a fast, scalable MVP ready for market.", icon: PenTool },
+    { title: "Market", desc: "We launch targeted campaigns to attract your first users.", icon: Rocket },
+    { title: "Scale", desc: "We use data-driven marketing to grow your brand exponentially.", icon: BarChart3 },
   ];
 
   const cardVariant = {
@@ -27,18 +27,14 @@ const HeroSection: React.FC = () => {
       >
         {/* count pill */}
         <div
-          className="flex items-center justify-center gap-[10px] px-[20px] py-[10px] bg-[#0066FF]/10 border border-[#0066FF]/30 rounded-[59px] w-fit"
-          style={{ boxShadow: "0 0 14px rgba(0,102,255,0.35), 0 0 40px rgba(0,102,255,0.15)" }}
+          
         >
           <div
             className="
-              w-[12px] h-[12px] rounded-full bg-[#0066FF]
-              shadow-[0_0_16px_#0066FF,0_0_8.1px_#0066FF]
+             
             "
           />
-          <span className="text-[#0066FF] font-poppins font-normal text-[14px] sm:text-[16px] md:text-[20px] leading-[130%]">
-            How it works
-          </span>
+         
         </div>
 
         {/* title */}
@@ -52,10 +48,10 @@ const HeroSection: React.FC = () => {
           viewport={{ once: true, amount: 0.6 }}
         >
           <h2 className="text-white text-[1.75rem] xs:text-[2rem] md:text-[2.875rem] leading-[34px] xs:leading-[40px] md:leading-[50px] font-medium tracking-[-1px] text-balance">
-            Automation, Made
+          Our process of 
           </h2>
           <h3 className="font-serif italic text-[1.75rem] xs:text-[2rem] md:text-[2.875rem] leading-[34px] xs:leading-[40px] md:leading-[50px] font-medium tracking-[-1px] bg-gradient-to-r from-[#0066FF] to-white bg-clip-text text-transparent text-balance">
-            Simple
+            Work at GroxStudio
           </h3>
         </motion.div>
       </div>
@@ -71,17 +67,17 @@ const HeroSection: React.FC = () => {
           </div>
           <div className="flex flex-col items-center gap-2 text-center">
             <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70 font-roboto font-medium text-[18px] leading-[24px]">
-              Discover
+              Idea
             </span>
-            <p className="text-[#9B96B0] font-roboto text-[16px] leading-[24px] w-[153px]">We analyze your current workflows and pain points.</p>
+            <p className="text-[#9B96B0] font-roboto text-[16px] leading-[24px] w-[153px]">We refine your idea and build a strategic roadmap for success.</p>
           </div>
         </motion.div>
 
         {/* Design */}
         <motion.div custom={1} variants={cardVariant as Variants} className="md:absolute md:left-[367px] md:top-[330px] w-[211px] h-[228px] flex flex-col items-center gap-2">
           <div className="flex flex-col items-center gap-2 text-center pb-5">
-            <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70 font-roboto font-medium text-[18px] leading-[24px]">Design</span>
-            <p className="text-[#9B96B0] font-roboto text-[16px] leading-[24px] w-[191px]">Build a tailored AI automation blueprint for your business.</p>
+            <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70 font-roboto font-medium text-[18px] leading-[24px]">Build</span>
+            <p className="text-[#9B96B0] font-roboto text-[16px] leading-[24px] w-[191px]">We design and develop a fast, scalable MVP ready for market.</p>
           </div>
           <div
             className="w-[100px] h-[98px] rounded-[25px] border border-white/10 shadow-[0_0_16px_rgba(0,102,255,0.4),0_0_8px_rgba(0,102,255,0.2)] bg-black/40 flex items-center justify-center backdrop-blur-sm"
@@ -105,8 +101,8 @@ const HeroSection: React.FC = () => {
           >
             <Rocket className="w-9 h-9 text-[#0066FF]" />
           </div>
-          <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70 font-roboto font-medium text-[18px] leading-[24px]">Deploy</span>
-          <p className="text-[#9B96B0] font-roboto text-[16px] leading-[24px] w-[191px] text-center">Implement and integrate solutions with minimal disruption.</p>
+          <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70 font-roboto font-medium text-[18px] leading-[24px]">Market</span>
+          <p className="text-[#9B96B0] font-roboto text-[16px] leading-[24px] w-[191px] text-center">We launch targeted campaigns to attract your first users.</p>
         </motion.div>
 
         {/* Scale */}
@@ -120,7 +116,7 @@ const HeroSection: React.FC = () => {
           }),
         }} className="md:absolute md:left-[1200px] md:top-[330px] w-[191px] h-[254px] flex flex-col items-center gap-2 pr-16">
           <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70 font-roboto font-medium text-[18px] leading-[24px]">Scale</span>
-          <p className="text-[#9B96B0] font-roboto text-[16px] leading-[24px] w-[191px] text-center">Monitor, optimize, and expand automation as you grow.</p>
+          <p className="text-[#9B96B0] font-roboto text-[16px] leading-[24px] w-[191px] text-center">We use data-driven marketing to grow your brand exponentially.</p>
           <div
             className="w-[100px] h-[98px] rounded-[25px] border border-white/10 shadow-[0_0_16px_rgba(0,102,255,0.4),0_0_8px_rgba(0,102,255,0.2)] bg-black/40 flex items-center justify-center backdrop-blur-sm"
           >

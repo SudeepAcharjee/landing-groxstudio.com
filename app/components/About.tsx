@@ -29,15 +29,23 @@ export default function About() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex flex-col items-center  max-w-4xl"
+          className="flex flex-col items-center w-full max-w-6xl"
         >
-          <h2 className="text-white text-[1.75rem] xs:text-[2rem] md:text-[2.875rem] leading-[34px] xs:leading-[40px] md:leading-[50px] font-medium tracking-[-1px] text-balance">
-            Scale Your Brand Impact
+          <h2 className="text-white text-[1.75rem] xs:text-[2rem] md:text-[3.5rem] leading-[1.1] font-medium tracking-[-1px] text-balance">
+            About us
           </h2>
           
-          <p className="text-[1rem] md:text-[1.125rem] text-white/70 tracking-[-1px] max-w-xl leading-relaxed mt-6">
-            Partner with us to amplify your brand presence with Grox Studio.
-          </p>
+          <div className="flex flex-col gap-6 mt-8 w-full max-w-5xl text-center">
+            <p className="text-[1.125rem] md:text-[1.25rem] text-white/70 tracking-tight leading-relaxed">
+              We started Grox Studio because we kept seeing the same thing — good businesses stuck with bad results. A freelancer who went quiet. An agency that looked great on calls but delivered nothing real. So we built the team we wish existed.
+            </p>
+            <p className="text-[1.125rem] md:text-[1.25rem] text-white/70 tracking-tight leading-relaxed">
+              At Grox Studio, we help founders build their MVP, take their business online, and grow their brand — all in one place. No handoffs. No confusion. No chasing 5 different people for 5 different things.
+            </p>
+            <p className="text-[1.125rem] md:text-[1.25rem] text-white/70 tracking-tight leading-relaxed font-medium text-white/90">
+              We work like your in-house team. We learn your business, think about your growth, and execute like we have skin in the game.
+            </p>
+          </div>
         </motion.div>
 
         {/* Founder Card Container */}
@@ -59,7 +67,7 @@ export default function About() {
             {/* Image Container */}
             <div className="w-full h-full rounded-[30.5px] md:rounded-[46.5px] overflow-hidden relative z-10" style={{ position: "relative" }}>
               <Image
-                src="/images/abg.png"
+                src="/logos/gwbe.png"
                 alt="About background"
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"

@@ -6,23 +6,23 @@ import { ChevronsRight } from "lucide-react";
 const SERVICES = [
     {
         id: "01",
-        title: "Brand Strategy",
-        tags: ["Development", "Brand Guidelines", "Analysis", "Rebranding Services"]
+        title: "App/Web development",
+        tags: ["Web Apps", "Mobile Apps", "Custom Software", "E-commerce"]
     },
     {
         id: "02",
-        title: "Web Design",
-        tags: ["Development", "Custom Website", "Web Solutions", "Responsive Web"]
+        title: "Branding & Design",
+        tags: ["Visual Identity", "UI/UX Design", "Brand Strategy", "Logo Design"]
     },
     {
         id: "03",
-        title: "Digital Marketing",
-        tags: ["Email Marketing", "Pay-Per-Click", "SEO", "SMM"]
+        title: "Social Media ",
+        tags: ["Content Creation", "Community Growth", "Paid Social", "Analytics"]
     },
     {
         id: "04",
-        title: "UI/UX Design",
-        tags: ["User Interface", "Wireframing", "Analysis", "Mobile App UI"]
+        title: "Performance Marketing",
+        tags: ["SEO", "PPC", "Email Marketing", "CRO"]
     }
 ];
 
@@ -102,10 +102,10 @@ export default function Services() {
                             className="w-full md:w-auto"
                         >
                             <h2 className="text-white text-[1.75rem] xs:text-[2rem] md:text-[2.875rem] leading-[34px] xs:leading-[40px] md:leading-[50px] font-medium tracking-[-1px] text-balance">
-                                Services that
+                                Services-  How
                             </h2>
                             <h3 className="font-serif italic text-[1.75rem] xs:text-[2rem] md:text-[2.875rem] leading-[34px] xs:leading-[40px] md:leading-[50px] font-medium tracking-[-1px] bg-gradient-to-r from-[#0066FF] to-white bg-clip-text text-transparent text-balance">
-                                are tailored
+                                We Help Businesses
                             </h3>
                         </motion.div>
 

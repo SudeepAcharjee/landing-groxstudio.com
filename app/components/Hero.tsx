@@ -96,7 +96,7 @@ export default function Hero() {
                     >
                         <h2
                             className={cn(
-                                "group relative mx-auto mt-4 max-w-4xl text-center text-6xl font-semibold tracking-tight text-balance text-white sm:text-6xl md:text-7xl xl:text-8xl leading-[1.1]",
+                                "group relative mx-auto mt-4 max-w-4xl text-center text-6xl font-semibold tracking-tight text-balance text-white sm:text-6xl md:text-5xl xl:text-5xl leading-[1.1]",
                             )}
                         >
                             <motion.span
@@ -105,7 +105,7 @@ export default function Hero() {
                                 transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                                 className="inline-block"
                             >
-                                Designing
+                                We build
                             </motion.span>
                             <br />
                             <motion.span
@@ -114,7 +114,7 @@ export default function Hero() {
                                 transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
                                 className="inline-block mr-3"
                             >
-                                Digital
+                                MVP for your 
                             </motion.span>
                             <motion.span
                                 initial={{ opacity: 0, y: 20 }}
@@ -123,7 +123,7 @@ export default function Hero() {
                                 className="inline-block font-bold"
                             >
                                 <CanvasText
-                                    text="Futures"
+                                    text="Brand"
                                     backgroundClassName="bg-blue-600 dark:bg-blue-700"
                                     colors={[
                                         "rgba(0, 153, 255, 1)",
@@ -184,7 +184,7 @@ export default function Hero() {
                         initial={{ opacity: 0, scale: 0.8, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                        className="absolute -bottom-4 right-[25%] group pointer-events-none md:pointer-events-auto"
+                        className="absolute -bottom-4 right-[1%] group pointer-events-none md:pointer-events-auto"
                     >
                         <div className="relative">
                             <div className="bg-[#FEF9C3] text-black px-4 py-1.5 rounded-full text-[12px] md:text-[20px] font-semibold shadow-xl transition-transform active:scale-95">
@@ -201,9 +201,9 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                        className="mt-12 text-[#ccc] text-[11px] md:text-sm uppercase tracking-[0.2em] font-medium text-center space-y-1 max-w-lg md:max-w-2xl px-4 select-none"
+                        className="mt-12 text-[#ccc] text-[12px] md:text-lg uppercase font-medium text-center space-y-1 max-w-lg md:max-w-2xl px-4 select-none"
                     >
-                        <p>Transforming Ideas into Reality Crafting the Digital Future, One Design at a Time</p>
+                        <p>We design and build websites, landing pages, and marketing assets that drive sales and qualified leads without hiring a full in-house team.  </p>
                     </motion.div>
                 </motion.div>
 

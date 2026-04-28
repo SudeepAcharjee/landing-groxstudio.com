@@ -1,17 +1,10 @@
 "use client";
 
-import React, { useRef, useState, useCallback } from "react";
+import React, { useRef, useState, useCallback, useEffect } from "react";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
-const VIDEOS = [
-  { id: 1, src: "https://www.w3schools.com/html/mov_bbb.mp4", poster: "/images/lillyen.png" },
-  { id: 2, src: "https://www.w3schools.com/html/mov_bbb.mp4", poster: "/images/lillyen.png" },
-  { id: 3, src: "https://www.w3schools.com/html/mov_bbb.mp4", poster: "/images/lillyen.png" },
-  { id: 4, src: "https://www.w3schools.com/html/mov_bbb.mp4", poster: "/images/lillyen.png" },
-  { id: 5, src: "https://www.w3schools.com/html/mov_bbb.mp4", poster: "/images/lillyen.png" },
-  { id: 6, src: "https://www.w3schools.com/html/mov_bbb.mp4", poster: "/images/lillyen.png" },
-];
-
-const VideoCard = ({ item }: { item: (typeof VIDEOS)[0] }) => {
+const VideoCard = ({ item }: { item: { id: string, src: string, poster: string } }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -76,6 +69,22 @@ export default function Testimonials() {
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
+  
+  const [videos, setVideos] = useState<{id: string, src: string, poster: string}[]>([]);
+
+  useEffect(() => {
+    const fetchVideos = async () => {
+      try {
+        const q = query(collection(db, "testimonials"), orderBy("createdAt", "desc"));
+        const snapshot = await getDocs(q);
+        const data = snapshot.docs.map(doc => ({ id: doc.id, src: doc.data().src, poster: doc.data().poster }));
+        setVideos(data);
+      } catch (error) {
+        console.error("Error fetching testimonials:", error);
+      }
+    };
+    fetchVideos();
+  }, []);
 
   const onMouseDown = useCallback((e: React.MouseEvent) => {
     if (!trackRef.current) return;
@@ -119,7 +128,7 @@ export default function Testimonials() {
         {/* Drag-to-scroll video track */}
         <div
           ref={trackRef}
-          className="no-scrollbar flex gap-4 sm:gap-6 px-6 md:px-20 overflow-x-auto pb-6 select-none pt-10"
+          className="no-scrollbar flex justify-center gap-4 sm:gap-6 px-6 md:px-20 overflow-x-auto pb-6 select-none pt-10"
           style={{
             cursor: "grab",
             scrollbarWidth: "none",
@@ -130,9 +139,13 @@ export default function Testimonials() {
           onMouseUp={stopDrag}
           onMouseLeave={stopDrag}
         >
-          {VIDEOS.map((item) => (
-            <VideoCard key={item.id} item={item} />
-          ))}
+          {videos.length > 0 ? (
+            videos.map((item) => (
+              <VideoCard key={item.id} item={item} />
+            ))
+          ) : (
+            <div className="text-white/50 w-full text-center py-10 font-medium">Loading testimonials...</div>
+          )}
         </div>
       </div>
     </section>
