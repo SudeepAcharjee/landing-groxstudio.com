@@ -19,9 +19,10 @@ export default function Page() {
       <Hero />
       <BrandLogos />  
        <Services />  
+        <Showcase />
       <About />
 
-      <Showcase />
+     
       <HowItWork />
       {/* <Blog /> */}
       <Testimonials />

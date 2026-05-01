@@ -92,39 +92,49 @@ export default function Booking() {
                             </p>
                         </div>
 
-                        <div className="p-6 rounded-[32px] border border-[#0066FF]/30 bg-white/[0.02] backdrop-blur-sm space-y-6 relative z-10 shadow-[0_0_30px_rgba(0,102,255,0.15)]">
-                            <div className="flex items-center gap-4">
-                                <div className="relative w-14 h-14 rounded-2xl overflow-hidden border border-white/10 ring-4 ring-[#0066FF]/20">
-                                    <Image 
-                                        src="/images/PP.png" 
-                                        alt="Lillyen White" 
-                                        fill 
-                                        sizes="56px"
-                                        className="object-cover"
-                                    />
-                                </div>
-                                <div>
-                                    <h4 className="text-white font-bold text-lg">Rahul Deka</h4>
-                                    <p className="text-white/60 text-sm">Co-Founder, Groxstudio</p>
-                                </div>
-                            </div>
-
-                            <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-
-                            <div className="space-y-4">
-                                <div className="flex items-center gap-4 text-white/60 group">
-                                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#0066FF]/10 group-hover:text-[#0066FF] transition-all">
-                                        <Clock className="w-5 h-5" />
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            {[
+                                {
+                                    name: "Rahul Deka",
+                                    role: "Co-Founder, Groxstudio",
+                                    image: "/images/PP.png",
+                                    linkedin: "https://www.linkedin.com/in/rahul-deka-7851a4289/",
+                                    position: "center"
+                                },
+                                {
+                                    name: "Debashis Majumdar ",
+                                    role: "CMO & Co-Founder",
+                                    image: "/images/dm.jpg",
+                                    linkedin: "https://www.linkedin.com/in/mdebashis/",
+                                    position: "top"
+                                }
+                            ].map((founder) => (
+                                <div key={founder.name} className="p-4 rounded-[24px] border border-[#0066FF]/20 bg-white/[0.02] backdrop-blur-sm space-y-4 relative z-10 shadow-[0_0_20px_rgba(0,102,255,0.1)] group/founder">
+                                    <div className="flex items-center gap-3">
+                                        <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-white/10 ring-2 ring-[#0066FF]/10">
+                                            <Image 
+                                                src={founder.image} 
+                                                alt={founder.name} 
+                                                fill 
+                                                sizes="48px"
+                                                className="object-cover"
+                                                style={{ objectPosition: founder.position }}
+                                            />
+                                        </div>
+                                        <div className="flex-1 flex items-center justify-between gap-2">
+                                            <div className="min-w-0">
+                                                <h4 className="text-white font-bold text-sm truncate">{founder.name}</h4>
+                                                <p className="text-white/50 text-[11px] truncate">{founder.role}</p>
+                                            </div>
+                                            <a href={founder.linkedin} target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#0066FF] transition-colors flex-shrink-0">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                                                    <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                                                </svg>
+                                            </a>
+                                        </div>
                                     </div>
-                                    <span className="text-sm font-medium">IST <b className="text-white ml-2">24/7</b></span>
                                 </div>
-                                <div className="flex items-center gap-4 text-white/60 group">
-                                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#0066FF]/10 group-hover:text-[#0066FF] transition-all">
-                                        <Globe className="w-5 h-5" />
-                                    </div>
-                                    <span className="text-sm font-medium">Digital <b className="text-white ml-2">Google Meet / Zoom</b></span>
-                                </div>
-                            </div>
+                            ))}
                         </div>
 
                         <div className="flex gap-4">

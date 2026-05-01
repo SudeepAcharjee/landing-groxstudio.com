@@ -21,7 +21,7 @@ const VideoCard = ({ item }: { item: { id: string, src: string, poster: string }
 
   return (
     <div
-      className="flex-none w-[220px] sm:w-[260px] md:w-[300px] aspect-[9/16] rounded-3xl overflow-hidden relative group shrink-0"
+      className="flex-none w-[220px] sm:w-[260px] md:w-[300px] aspect-[9/16] rounded-3xl overflow-hidden relative group shrink-0 snap-center"
       style={{
         border: "1px solid rgba(0,102,255,0.4)",
         boxShadow: "0 0 20px rgba(0,102,255,0.3), 0 0 40px rgba(0,102,255,0.1)",
@@ -32,7 +32,6 @@ const VideoCard = ({ item }: { item: { id: string, src: string, poster: string }
         src={item.src}
         loop
         playsInline
-        muted
         poster={item.poster}
         className="absolute inset-0 w-full h-full object-cover"
       />
@@ -115,10 +114,10 @@ export default function Testimonials() {
         {/* Heading */}
         <div className="flex flex-col items-center text-center mb-12 px-6">
           <h2 className="text-white text-[1.75rem] xs:text-[2rem] md:text-[2.875rem] leading-[34px] xs:leading-[40px] md:leading-[50px] font-medium tracking-[-1px] text-balance">
-            Partnered with most of the
+            Trusted by Visionary Founders and 
           </h2>
           <h3 className="font-serif italic text-[1.75rem] xs:text-[2rem] md:text-[2.875rem] leading-[34px] xs:leading-[40px] md:leading-[50px] font-medium tracking-[-1px] bg-gradient-to-r from-[#0066FF] to-white bg-clip-text text-transparent text-balance">
-            top people at each industry
+            Industry-Leading Innovators
           </h3>
         </div>
 
@@ -128,7 +127,7 @@ export default function Testimonials() {
         {/* Drag-to-scroll video track */}
         <div
           ref={trackRef}
-          className="no-scrollbar flex justify-center gap-4 sm:gap-6 px-6 md:px-20 overflow-x-auto pb-6 select-none pt-10"
+          className="no-scrollbar flex justify-start md:justify-center gap-4 sm:gap-6 px-6 md:px-20 overflow-x-auto pb-6 select-none pt-10 snap-x snap-mandatory scroll-smooth"
           style={{
             cursor: "grab",
             scrollbarWidth: "none",

@@ -16,23 +16,41 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://groxstudio.com"),
-  title: "GroxStudio | Software Development, Branding & Design Agency",
-  description: "GroxStudio is a creative agency specializing in digital transformation, high-end branding, and innovative design solutions for ambitious brands.",
-  keywords: ["digital agency", "branding", "web design", "marketing strategy", "GroxStudio"],
+  metadataBase: new URL("https://groxstudio.in"),
+  title: "GroxStudio | Full-Service Software Development & Branding Agency",
+  description: "GroxStudio helps founders build MVPs, scale digital products, and craft premium brand identities. We are your dedicated partner for software development, UI/UX design, and strategic branding.",
+  keywords: [
+    "software development agency", 
+    "branding for startups", 
+    "MVP development services", 
+    "custom web applications", 
+    "UI/UX design agency", 
+    "GroxStudio",
+    "digital growth partner",
+    "mobile app development"
+  ],
   authors: [{ name: "GroxStudio Team" }],
   openGraph: {
-    title: "GroxStudio | Software Development, Branding & Design Agency",
-    description: "Transforming Ideas into Reality - Crafting the Digital Future, One Design at a Time.",
-    url: "https://groxstudio.com",
+    title: "GroxStudio | Transforming Ideas into Digital Reality",
+    description: "Specializing in MVP development and high-end branding for ambitious startups and founders worldwide.",
+    url: "https://groxstudio.in",
     siteName: "GroxStudio",
+    images: [
+      {
+        url: "/logos/gwbe.png",
+        width: 1200,
+        height: 630,
+        alt: "GroxStudio Branding",
+      },
+    ],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "GroxStudio | Software Development, Branding & Design Agency",
-    description: "GroxStudio is a creative agency specializing in digital transformation.",
+    title: "GroxStudio | Software & Branding for the Next Generation",
+    description: "Build your MVP and scale your brand with GroxStudio's expert team.",
+    images: ["/logos/gwbe.png"],
   },
 };
 

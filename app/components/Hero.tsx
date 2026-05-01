@@ -79,7 +79,7 @@ export default function Hero() {
                 {/* Bounding Box Design */}
                 <motion.div 
                     style={{ scale: boxScale }}
-                    className="relative border border-transparent md:border-[#0066FF]/30 p-6 md:p-16 flex flex-col items-center justify-center min-h-[300px] md:min-h-[380px]"
+                    className="relative border border-transparent md:border-[#0066FF]/30 px-6 py-16 md:p-16 flex flex-col items-center justify-center min-h-[400px] md:min-h-[380px]"
                 >
                     {/* Corner Squares */}
                     <div className="absolute -top-1.5 -left-1.5 w-3 h-3 bg-[#0066FF] hidden md:block" />
@@ -92,11 +92,11 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                        className="text-center"
+                        className="text-center relative z-20"
                     >
-                        <h2
+                        <h1
                             className={cn(
-                                "group relative mx-auto mt-4 max-w-4xl text-center text-6xl font-semibold tracking-tight text-balance text-white sm:text-6xl md:text-5xl xl:text-5xl leading-[1.1]",
+                                "group relative mx-auto mt-4 max-w-4xl text-center text-[2.25rem] sm:text-[3.5rem] md:text-6xl xl:text-7xl font-semibold tracking-tight text-balance text-white leading-[1.1]",
                             )}
                         >
                             <motion.span
@@ -112,7 +112,7 @@ export default function Hero() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                                className="inline-block mr-3"
+                                className="inline-block mr-2 md:mr-3"
                             >
                                 MVP for your 
                             </motion.span>
@@ -141,7 +141,7 @@ export default function Hero() {
                                     animationDuration={20}
                                 />
                             </motion.span>
-                        </h2>
+                        </h1>
                     </motion.div>
 
                     {/* Floating Badges */}
@@ -150,10 +150,10 @@ export default function Hero() {
                         initial={{ opacity: 0, scale: 0.8, y: 30 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                        className="absolute top-[65%] left-2 md:-left-12 group pointer-events-none md:pointer-events-auto"
+                        className="absolute top-[10%] -left-2 md:-left-24 group pointer-events-none md:pointer-events-auto scale-[0.65] md:scale-100 origin-left z-0"
                     >
                         <div className="relative">
-                            <div className="bg-[#0066FF] text-white px-3 py-1 rounded-full text-[12px] md:text-[20px] font-semibold flex items-center gap-1 shadow-lg shadow-[#0066FF]/20 transition-transform active:scale-95">
+                            <div className="bg-[#0066FF] text-white px-3 py-1 rounded-full text-[12px] md:text-[20px] font-semibold flex items-center gap-1 shadow-lg shadow-[#0066FF]/20 transition-transform active:scale-95 whitespace-nowrap">
                                 Branding
                             </div>
                             <svg className="absolute -right-2 top-0 -translate-y-1/2 w-4 h-4 text-[#0066FF]" fill="currentColor" viewBox="0 0 24 24">
@@ -167,10 +167,10 @@ export default function Hero() {
                         initial={{ opacity: 0, scale: 0.8, y: -30 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                        className="absolute md:top-[25%] top-[35%] -right-2 md:-right-10 group pointer-events-none md:pointer-events-auto"
+                        className="absolute top-[0%] -right-2 md:-right-20 group pointer-events-none md:pointer-events-auto scale-[0.65] md:scale-100 origin-right z-0"
                     >
                         <div className="relative">
-                            <div className="bg-white text-black px-4 py-1.5 rounded-full text-[12px] md:text-[20px] font-semibold shadow-xl transition-transform active:scale-95">
+                            <div className="bg-white text-black px-4 py-1.5 rounded-full text-[12px] md:text-[20px] font-semibold shadow-xl transition-transform active:scale-95 whitespace-nowrap">
                                Marketing
                             </div>
                             <svg className="absolute -left-2 top-0 -translate-y-1/2 w-4 h-4 text-white rotate-180" fill="currentColor" viewBox="0 0 24 24">
@@ -184,10 +184,10 @@ export default function Hero() {
                         initial={{ opacity: 0, scale: 0.8, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                        className="absolute -bottom-4 right-[1%] group pointer-events-none md:pointer-events-auto"
+                        className="absolute bottom-[28%] md:bottom-[20%] -right-2 md:-right-24 group pointer-events-none md:pointer-events-auto scale-[0.65] md:scale-100 origin-right z-0"
                     >
                         <div className="relative">
-                            <div className="bg-[#FEF9C3] text-black px-4 py-1.5 rounded-full text-[12px] md:text-[20px] font-semibold shadow-xl transition-transform active:scale-95">
+                            <div className="bg-[#FEF9C3] text-black px-4 py-1.5 rounded-full text-[12px] md:text-[20px] font-semibold shadow-xl transition-transform active:scale-95 whitespace-nowrap">
                                 Software Development
                             </div>
                             <svg className="absolute -left-2 top-0 -translate-y-1/2 w-4 h-4 text-[#FEF9C3] rotate-180" fill="currentColor" viewBox="0 0 24 24">
@@ -201,40 +201,40 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                        className="mt-12 text-[#ccc] text-[12px] md:text-lg uppercase font-medium text-center space-y-1 max-w-lg md:max-w-2xl px-4 select-none"
+                        className="mt-12 text-white/60 text-[14px] md:text-lg font-medium text-center space-y-1 max-w-lg md:max-w-3xl px-4 select-none"
                     >
-                        <p>We design and build websites, landing pages, and marketing assets that drive sales and qualified leads without hiring a full in-house team.  </p>
+                        <p className="leading-relaxed">We design and build websites, landing pages, and marketing assets that drive sales and qualified leads without hiring a full in-house team. </p>
                     </motion.div>
-                </motion.div>
 
-                {/* CTA Button */}
-                <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 1, ease: [0.16, 1, 0.3, 1] }}
-                    className="mt-12 flex justify-center"
-                >
-                    <Link
-                      href="#booking"
-                      className="group relative flex items-center justify-between bg-white/[0.03] border border-[#0066FF] hover:border-[#0066FF]/80 p-1.5 rounded-full transition-all duration-500 overflow-hidden min-w-[170px]"
+                    {/* CTA Button Moved inside the box area */}
+                    <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 1, ease: [0.16, 1, 0.3, 1] }}
+                        className="mt-12 flex justify-center w-full"
                     >
-                      {/* Animated BG */}
-                      <div className="absolute left-1.5 top-1.5 bottom-1.5 w-8 bg-[#0066FF] rounded-full group-hover:w-[calc(100%-12px)] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] z-0 shadow-[0_0_20px_rgba(0,102,255,0.3)]" />
+                        <Link
+                          href="#booking"
+                          className="group relative flex items-center justify-between bg-white/[0.03] border border-[#0066FF] hover:border-[#0066FF]/80 p-1.5 rounded-full transition-all duration-500 overflow-hidden min-w-[210px]"
+                        >
+                          {/* Animated BG */}
+                          <div className="absolute left-1.5 top-1.5 bottom-1.5 w-8 bg-[#0066FF] rounded-full group-hover:w-[calc(100%-12px)] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] z-0 shadow-[0_0_20px_rgba(0,102,255,0.3)]" />
 
-                      <div className="relative z-10 flex items-center w-full">
-                        <div className="flex items-center justify-center w-8 h-8 rounded-full">
-                          <ArrowUpRight className="w-4 h-4 text-white group-hover:scale-110 transition-transform duration-500" />
-                        </div>
+                          <div className="relative z-10 flex items-center w-full">
+                            <div className="flex items-center justify-center w-8 h-8 rounded-full">
+                              <ArrowUpRight className="w-4 h-4 text-white group-hover:scale-110 transition-transform duration-500" />
+                            </div>
 
-                        <div className="flex-1 text-center pr-3 pl-1">
-                          <span
-                            className={`text-white text-[17px] font-medium tracking-tight ${notoSans.className}`}
-                          >
-                            Book a Call
-                          </span>
-                        </div>
-                      </div>
-                    </Link>
+                            <div className="flex-1 text-center pr-4 pl-1">
+                              <span
+                                className={`text-white text-[17px] font-medium tracking-tight ${notoSans.className}`}
+                              >
+                                Book a Call
+                              </span>
+                            </div>
+                          </div>
+                        </Link>
+                    </motion.div>
                 </motion.div>
             </div>
 

@@ -2,27 +2,28 @@
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { ChevronsRight } from "lucide-react";
+import Link from "next/link";
 
 const SERVICES = [
     {
         id: "01",
-        title: "App/Web development",
-        tags: ["Web Apps", "Mobile Apps", "Custom Software", "E-commerce"]
+        title: "Software Development",
+        tags: ["Custom Web Apps", "Mobile App Development", "SaaS Solutions", "E-commerce Platforms"]
     },
     {
         id: "02",
-        title: "Branding & Design",
-        tags: ["Visual Identity", "UI/UX Design", "Brand Strategy", "Logo Design"]
+        title: "Brand Strategy & UI/UX Design",
+        tags: ["Brand Identity Systems", "Product Design (UI/UX)", "Visual Language", "Graphic Design"]
     },
     {
         id: "03",
-        title: "Social Media ",
-        tags: ["Content Creation", "Community Growth", "Paid Social", "Analytics"]
+        title: "Content & Social Growth",
+        tags: ["High-End Videography", "Community Building", "Social Media Strategy", "Viral Content"]
     },
     {
         id: "04",
-        title: "Performance Marketing",
-        tags: ["SEO", "PPC", "Email Marketing", "CRO"]
+        title: "Performance & Search Growth",
+        tags: ["SEO Optimization", "PPC Management", "Growth Marketing", "Conversion (CRO)"]
     }
 ];
 
@@ -102,32 +103,34 @@ export default function Services() {
                             className="w-full md:w-auto"
                         >
                             <h2 className="text-white text-[1.75rem] xs:text-[2rem] md:text-[2.875rem] leading-[34px] xs:leading-[40px] md:leading-[50px] font-medium tracking-[-1px] text-balance">
-                                Services-  How
+                                How We
                             </h2>
                             <h3 className="font-serif italic text-[1.75rem] xs:text-[2rem] md:text-[2.875rem] leading-[34px] xs:leading-[40px] md:leading-[50px] font-medium tracking-[-1px] bg-gradient-to-r from-[#0066FF] to-white bg-clip-text text-transparent text-balance">
-                                We Help Businesses
+                               Help Businesses
                             </h3>
                         </motion.div>
 
-                        <motion.button 
-                            initial={{ opacity: 0, x: 20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                            className="group relative flex items-center justify-between bg-white/[0.03] border border-[#0066FF] hover:border-[#0066FF]/80 p-1.5 rounded-full transition-colors duration-500 overflow-hidden w-fit md:min-w-[200px] h-14 px-4 md:px-1.5 mx-auto md:mx-0"
-                        >
-                            <div className="absolute left-1.5 top-1.5 bottom-1.5 w-11 bg-[#0066FF] rounded-full group-hover:w-[calc(100%-12px)] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] z-0 shadow-[0_0_20px_rgba(0,102,255,0.3)]" />
-                            <div className="relative z-10 flex items-center w-full gap-4">
-                                <div className="flex items-center justify-center w-11 h-11 rounded-full overflow-hidden transition-all duration-500">
-                                    <ChevronsRight className="w-5 h-5 text-white group-hover:scale-110 transition-transform duration-500 mr-5 md:mr-0" />
+                        <Link href="https://groxstudio.com" target="_blank" rel="noopener noreferrer">
+                            <motion.div 
+                                initial={{ opacity: 0, x: 20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                                className="group relative flex items-center justify-between bg-white/[0.03] border border-[#0066FF] hover:border-[#0066FF]/80 p-1.5 rounded-full transition-colors duration-500 overflow-hidden w-fit md:min-w-[200px] h-14 px-4 md:px-1.5 mx-auto md:mx-0 cursor-pointer"
+                            >
+                                <div className="absolute left-1.5 top-1.5 bottom-1.5 w-11 bg-[#0066FF] rounded-full group-hover:w-[calc(100%-12px)] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] z-0 shadow-[0_0_20px_rgba(0,102,255,0.3)]" />
+                                <div className="relative z-10 flex items-center w-full gap-4">
+                                    <div className="flex items-center justify-center w-11 h-11 rounded-full overflow-hidden transition-all duration-500">
+                                        <ChevronsRight className="w-5 h-5 text-white group-hover:scale-110 transition-transform duration-500 mr-5 md:mr-0" />
+                                    </div>
+                                    <div className="flex-1 text-center pr-4 md:pr-6">
+                                        <span className="text-white text-base font-semibold tracking-tight select-none">
+                                            View Service
+                                        </span>
+                                    </div>
                                 </div>
-                                <div className="flex-1 text-center pr-4 md:pr-6">
-                                    <span className="text-white text-base font-semibold tracking-tight select-none">
-                                        View Service
-                                    </span>
-                                </div>
-                            </div>
-                        </motion.button>
+                            </motion.div>
+                        </Link>
                     </div>
 
                     <div className="relative">
@@ -170,7 +173,7 @@ export default function Services() {
                                             {service.id}
                                         </span>
 
-                                        <h4 className="relative z-10 text-white text-4xl font-light leading-tight mb-8 max-w-[180px]">
+                                        <h4 className="relative z-10 text-white text-2xl font-light leading-tight mb-8 max-w-[180px]">
                                             {service.title}
                                         </h4>
 
